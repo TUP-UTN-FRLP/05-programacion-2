@@ -191,3 +191,13 @@ PANIN SUAREZ Julian - 36595 - julipaninsuarez-sys
 NADOR Kevin - 36584 - kevinnador
 
 FERIOLI Lucio - 36708 - ferioli02
+
+### TUP13 - Grupo 7
+
+Integrantes:
+
+LENCINA Mauro Elias - 37100 - maurolencina
+
+ESQUIVEL David - -
+
+MARTINEZ Maximiliano Nahuel - 36732 - mnahuelmartinez
