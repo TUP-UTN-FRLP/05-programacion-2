@@ -95,6 +95,15 @@ IRIBARREN Bautista - 37115 - Bautista707
 
 GIOVANNINI Francisco - 37117 - flipante
 
+### TUP11 - Grupo 6
+
+Integrantes:
+
+RINGUELET Emilia - 36601 - emiliaringuelet
+ASNGHI Catalina - 36836 - cataasnaghi08
+FERNANDEZ BOLLINI - 36709 - tiagofb
+SOTO Elio Agustin - 36612 - soto-agustin
+
 ---
 
 ## Comisión TUP13
