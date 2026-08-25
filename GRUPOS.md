@@ -191,3 +191,15 @@ PANIN SUAREZ Julian - 36595 - julipaninsuarez-sys
 NADOR Kevin - 36584 - kevinnador
 
 FERIOLI Lucio - 36708 - ferioli02
+
+### TUP13 - Grupo 7
+
+Integrantes:
+
+MONTANARI Blas -  - blassmm
+
+BALSA Valentina -  - valenbalsa
+
+VEIGA Tobias - 36618 - TobiasVeiga00
+
+MASSA Laureano - 37101 - Laureano-GitHub
