@@ -100,8 +100,11 @@ GIOVANNINI Francisco - 37117 - flipante
 Integrantes:
 
 RINGUELET Emilia - 36601 - emiliaringuelet
+
 ASNGHI Catalina - 36836 - cataasnaghi08
+
 FERNANDEZ BOLLINI - 36709 - tiagofb
+
 SOTO Elio Agustin - 36612 - soto-agustin
 
 ---
