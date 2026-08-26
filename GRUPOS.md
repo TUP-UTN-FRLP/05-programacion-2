@@ -155,9 +155,9 @@ FILARDO Hilda Aldana - filardohilda
 
 GOMEZ Santiago - 36715 - Santiago-Gomez14
 
-HARGUINDEGUY Camila - 36721
+HARGUINDEGUY Camila - 36721 - camilaharguindeguy
 
-OLIVA Nicolas -
+OLIVA Nicolas - 36594 - Nicolasoliva2025
 
 ### TUP13 - Grupo 3
 
