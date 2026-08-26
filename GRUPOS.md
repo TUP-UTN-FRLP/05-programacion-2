@@ -117,6 +117,18 @@ FERNANDEZ BOLLINI Tiago - 36709 - tiagofb
 
 SOTO Elio Agustin - 36612 - soto-agustin
 
+### TUP11 - Grupo 8
+
+Integrantes:
+
+BAVARO Mateo Julian - 36842 - MateoBávaro
+
+SALEM Rodríguez Ignacio - 36605 - NachoRSalem
+
+IZAURRALDE Bautista - 37021 - izaurraldebautista-svg
+
+UGARTE Matias - 935556 - MatiasUgarte
+
 ---
 
 ## Comisión TUP13
