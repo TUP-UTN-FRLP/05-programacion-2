@@ -15,9 +15,7 @@ class Empleado:
         self.antiguedad_anios = antiguedad_anios
 
     def sueldo_total(self):
-        aumento = (
-            self.sueldo_basico * 0.05 * self.antiguedad_anios
-        )
+        aumento = self.sueldo_basico * 0.05 * self.antiguedad_anios
         return self.sueldo_basico + aumento
 
 

@@ -23,8 +23,11 @@ class Producto:
 
 
 yerba = Producto("Yerba", 3500)
+chocolate = Producto("Block", 3000)
 
 yerba.reponer(20)
-
-print(f"Stock: {yerba.stock}")
+chocolate.reponer(30)
+print(f"Precio: {yerba.precio}")
 print(f"Valor: ${yerba.valor_stock()}")
+print(f"Stock: {chocolate.stock}")
+print(f"Valor: ${chocolate.valor_stock()}")
