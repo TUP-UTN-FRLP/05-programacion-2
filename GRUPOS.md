@@ -31,7 +31,7 @@ RODRÍGUEZ Pedro - 34567 - pedrosystems
 LÓPEZ María - 45678 - marialopez
 ```
 
-> Los nombres, legajos y usurios del ejemplo son ficticios.
+> Los nombres, legajos y usuarios del ejemplo son ficticios.
 
 ---
 
