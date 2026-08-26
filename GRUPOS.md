@@ -47,6 +47,8 @@ CANALES Ignacio - 36851 - CANALESign
 
 BARRIENTOS Raquel - 36840 - Barrientos2001
 
+CINALLI Guadalupe - 36857 - Brannagh7
+
 GREGORI Ariel - 36717 - Ari-GG1
 
 ### TUP11 - Grupo 2
