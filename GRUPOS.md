@@ -163,7 +163,7 @@ OLIVA Nicolas - 36594 - Nicolasoliva2025
 
 Integrantes:
 
-AMANDOLA Santiago -  - SanMar-089
+AMANDOLA Santiago - 36830 - SanMar-089
 
 PASSARO Leandro Hugo - 36596 - lhpassaro-UTN
 
