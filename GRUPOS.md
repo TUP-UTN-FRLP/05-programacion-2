@@ -31,7 +31,7 @@ RODRÍGUEZ Pedro - 34567 - pedrosystems
 LÓPEZ María - 45678 - marialopez
 ```
 
-> Los nombres, legajos y usurios del ejemplo son ficticios.
+> Los nombres, legajos y usuarios del ejemplo son ficticios.
 
 ---
 
@@ -46,6 +46,8 @@ Integrantes:
 CANALES Ignacio - 36851 - CANALESign
 
 BARRIENTOS Raquel - 36840 - Barrientos2001
+
+CINALLI Guadalupe - 36857 - Brannagh7
 
 GREGORI Ariel - 36717 - Ari-GG1
 
@@ -117,6 +119,18 @@ FERNANDEZ BOLLINI Tiago - 36709 - tiagofb
 
 SOTO Elio Agustin - 36612 - soto-agustin
 
+### TUP11 - Grupo 8
+
+Integrantes:
+
+BAVARO Mateo Julian - 36842 - MateoBávaro
+
+SALEM Rodríguez Ignacio - 36605 - NachoRSalem
+
+IZAURRALDE Bautista - 37021 - izaurraldebautista-svg
+
+UGARTE Matias - 935556 - MatiasUgarte
+
 ---
 
 ## Comisión TUP13
@@ -143,15 +157,15 @@ FILARDO Hilda Aldana - filardohilda
 
 GOMEZ Santiago - 36715 - Santiago-Gomez14
 
-HARGUINDEGUY Camila - 36721
+HARGUINDEGUY Camila - 36721 - camilaharguindeguy
 
-OLIVA Nicolas -
+OLIVA Nicolas - 36594 - Nicolasoliva2025
 
 ### TUP13 - Grupo 3
 
 Integrantes:
 
-AMANDOLA Santiago -  - SanMar-089
+AMANDOLA Santiago - 36830 - SanMar-089
 
 PASSARO Leandro Hugo - 36596 - lhpassaro-UTN
 
@@ -182,6 +196,7 @@ GRONDA Anabella - 36718 - AnaGronda
 MONLEZUN Neilen - 36734 - NeilenC
 
 ZOPPOLI Luciano - 37105 - luchozoppo
+
 ### TUP13 - Grupo 6
 
 Integrantes:
@@ -203,3 +218,13 @@ BALSA Valentina -  - valenbalsa
 VEIGA Tobias - 36618 - TobiasVeiga00
 
 MASSA Laureano - 37101 - Laureano-GitHub
+
+### TUP13 - Grupo 8
+
+Integrantes:
+
+MARTINEZ Maximiliano Nahuel - 36732 - mnahuelmartinez
+
+EZQUIVEL David - 36707 - Davidesquivel-BSSO
+
+LENCINA Mauro Elìas - 37100 - maurolencina
