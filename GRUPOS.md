@@ -53,13 +53,13 @@ GREGORI Ariel - 36717 - Ari-GG1
 
 ### TUP11 - Grupo 2
 
-Nahuel Rubio - 36608 - nahuel-sng
+RUBIO Nahuel - 36608 - nahuel-sng
 
-Pablo Courtis - 36862 - kourtis23
+COURTIS Pablo - 36862 - kourtis23
 
-Rodolfo Zualet - 36622 - rzualet
+ZUALET Rodolfo - 36622 - rzualet
 
-Sofia Reyna - 36600 - sofiabelenreyna-a11y
+REYNA Sofia - 36600 - sofiabelenreyna-a11y
 
 ### TUP11 - Grupo 3
 
