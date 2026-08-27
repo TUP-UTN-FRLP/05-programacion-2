@@ -211,6 +211,18 @@ FERIOLI Lucio - 36708 - ferioli02
 
 Integrantes:
 
+MONTANARI Blas -  - blassmm
+
+BALSA Valentina -  - valenbalsa
+
+VEIGA Tobias - 36618 - TobiasVeiga00
+
+MASSA Laureano - 37101 - Laureano-GitHub
+
+### TUP13 - Grupo 8
+
+Integrantes:
+
 MARTINEZ Maximiliano Nahuel - 36732 - mnahuelmartinez
 
 EZQUIVEL David - 36707 - Davidesquivel-BSSO
