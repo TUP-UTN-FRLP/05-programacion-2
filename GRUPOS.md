@@ -135,7 +135,7 @@ UGARTE Matias - 935556 - MatiasUgarte
 
 Integrantes:
 
-DE LA TORRE Magdalena Regina - 36863 - Magdlt   
+DE LA TORRE Magdalena Regina - 36863 - Magdlt
 
 SANDOVAL Daiana Jimena - 36185 - DaianaSNDVL
 
