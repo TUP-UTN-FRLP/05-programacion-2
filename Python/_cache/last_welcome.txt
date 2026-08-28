@@ -1,0 +1,6 @@
+26.3
+
+!B!Python install manager was successfully updated to 26.3.!W!
+
+Additional shebang configuration is now available. Please see
+!B!https://docs.python.org/using/windows#shebang-lines!W! for more information.
