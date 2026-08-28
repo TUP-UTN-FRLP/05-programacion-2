@@ -131,6 +131,18 @@ IZAURRALDE Bautista - 37021 - izaurraldebautista-svg
 
 UGARTE Matias - 935556 - MatiasUgarte
 
+### TUP11 - Grupo 9  
+
+Integrantes:
+
+DE LA TORRE Magdalena Regina - 36863 - Magdlt   
+
+SANDOVAL Daiana Jimena - 36185 - DaianaSNDVL
+
+MARTÍNEZ PANIAGUA Milagros - 36733 - miliMartinezz  
+
+VISCUBI Danilo Luis - 37104 - daniloviscubi
+
 ---
 
 ## Comisión TUP13
