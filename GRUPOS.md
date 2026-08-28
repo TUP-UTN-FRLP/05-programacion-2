@@ -10,7 +10,7 @@
   registrados en otro grupo.
 - No modificar ni eliminar la información correspondiente a otros grupos.
 - La numeración de los grupos debe continuar la existente en cada comisión.
-La conformación registrada en este documento será utilizada posteriormente por la cátedra para crear los equipos y repositorios privados de trabajo de cada grupo.
+La conformación registrada en este documento será utilizada posteriormente por la cátedra para crear los equipos y repositorios privados de trabajo de cada equipo.
 
 Una vez conformado el grupo, sus integrantes deberán registrarlo en este documento, dentro de la comisión correspondiente.
 
