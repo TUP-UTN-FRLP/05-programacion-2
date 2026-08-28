@@ -38,13 +38,13 @@ Para un programador de C, entender las diferencias arquitectónicas de Python es
 
 **Nota técnica:** Python tiene tipado dinámico, pero es de tipado fuerte no mezcla tipos implícitamente. Por ejemplo, sumar un número y un texto da error.
 
-### 3. Gestión de la Memoria:
+### 3. Gestión de la Memoria
 
 **Manual (C):** El programador es el dueño absoluto de la memoria. Pedís memoria `malloc`, la usás y vos mismo tenés que liberarla `free`. Si te equivocás, generás Fugas de memoria (Memory Leaks) o el temido Segmentation Fault al acceder a memoria no permitida.
 
 **Automática (Python):** Python incluye un mecanismo llamado **Garbage Collector** (Recolector de Basura). Él solo se encarga de asignar la memoria cuando creás una variable y de liberarla automáticamente cuando detecta que esa variable ya no se está utilizando en ninguna parte del programa. En Python no existen los punteros manipulables por el usuario.
 
-### 4. Sintaxis y Estructura:
+### 4. Sintaxis y Estructura
 
 **C:** Utiliza llaves { } para delimitar bloques de código y punto y coma ; para finalizar instrucciones. Permite escribir código compacto pero difícil de leer si no se tiene buena práctica.
 
@@ -60,15 +60,15 @@ Python fue creado a finales de los años 80 por **Guido van Rossum** en los Paí
 
 Si abrís un intérprete de Python y escribís import this, aparecerá un poema llamado El **Zen de Python.** Las máximas principales, que resumen la transición desde C, son:
 
-*La legibilidad cuenta*
+_La legibilidad cuenta_
 
-*Debería haber una, y preferiblemente solo una, forma obvia de hacerlo.*
+_Debería haber una, y preferiblemente solo una, forma obvia de hacerlo._
 
 ![](img/cap01_img03.png)
 
 ## Python en el Mundo Real: El Ranking
 
-El Índice TIOBE (https://www.tiobe.com/tiobe-index/) mide la popularidad de los lenguajes de programación según las búsquedas en internet. Actualmente, Python se encuentra en el puesto Nº 1, desplazando a C, Java y C++.
+El Índice TIOBE (<https://www.tiobe.com/tiobe-index/>) mide la popularidad de los lenguajes de programación según las búsquedas en internet. Actualmente, Python se encuentra en el puesto Nº 1, desplazando a C, Java y C++.
 
 ![](img/cap01_img04.png)
 
@@ -111,7 +111,7 @@ Para asegurar que todos trabajen en el mismo entorno y evitar problemas de compa
 
 ### Instalación Python Windows
 
-Descargar: https://www.python.org/downloads/ (seleccionar Python 3.13.x)
+Descargar: <https://www.python.org/downloads/> (seleccionar Python 3.13.x)
 
 En el instalador, MARCAR OBLIGATORIAMENTE:
 
@@ -187,7 +187,7 @@ Cuando el entorno está activo vas a ver (venv) al principio del prompt, y el co
 
 ![](img/cap01_img08.png)
 
-### Principios clave:
+### Principios clave
 
 CORRECTO (PEP 8)
 
@@ -208,7 +208,7 @@ def CalcularPromedio(numeros):
     return total/cantidad
 ```
 
-### Reglas principales:
+### Reglas principales
 
 ![](img/cap01_img09.jpeg)
 
