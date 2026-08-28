@@ -1,1 +1,14 @@
-MATERIAL/MANUAL/capitulo_06_Funciones/Python/pythoncore-3.14-64/
+# Instalaciones locales de Python / PyManager
+Python/
+**/Python/
+
+# Entornos virtuales
+venv/
+**/venv/
+.venv/
+**/.venv/
+
+# Cache de Python
+__pycache__/
+*.pyc
+*.pyo
