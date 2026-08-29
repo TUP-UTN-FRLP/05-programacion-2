@@ -237,6 +237,6 @@ Integrantes:
 
 MARTINEZ Maximiliano Nahuel - 36732 - mnahuelmartinez
 
-EZQUIVEL David - 36707 - Davidesquivel-BSSO
+ESQUIVEL David - 36707 - Davidesquivel-BSSO
 
 LENCINA Mauro Elìas - 37100 - maurolencina
