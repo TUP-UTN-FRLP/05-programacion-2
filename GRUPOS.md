@@ -240,3 +240,18 @@ MARTINEZ Maximiliano Nahuel - 36732 - mnahuelmartinez
 ESQUIVEL David - 36707 - Davidesquivel-BSSO
 
 LENCINA Mauro Elìas - 37100 - maurolencina
+
+
+### TUP13 - Grupo 9
+
+Integrantes:
+
+BRIME Milagros - 36843 - MiliBrime
+
+CARRIZO Julia Mailen - 36854 - PochiCarrizo
+
+Ceccacci Jenaro - 36856 - Jenaro9
+
+VELOSO Brian - 36619 - brianveloso-byte
+
+
