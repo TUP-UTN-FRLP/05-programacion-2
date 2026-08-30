@@ -252,5 +252,3 @@ CARRIZO Julia Mailen - 36854 - PochiCarrizo
 Ceccacci Jenaro - 36856 - Jenaro9
 
 VELOSO Brian - 36619 - braianveloso-byte
-
-
