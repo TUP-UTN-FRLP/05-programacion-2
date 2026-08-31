@@ -29,7 +29,7 @@ class Cronometro:
 
     def __str__(self):
         return (
-            f"{self.horas:02d}:"
+            f"{self.horas}:"
             f"{self.minutos:02d}:"
             f"{self.segundos:02d}"
         )
@@ -39,5 +39,4 @@ c = Cronometro()
 
 for _ in range(3700):
     c.avanzar_segundo()
-
-print(c)
+    print(c)

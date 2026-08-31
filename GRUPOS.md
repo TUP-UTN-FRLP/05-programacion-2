@@ -10,7 +10,7 @@
   registrados en otro grupo.
 - No modificar ni eliminar la información correspondiente a otros grupos.
 - La numeración de los grupos debe continuar la existente en cada comisión.
-La conformación registrada en este documento será utilizada posteriormente por la cátedra para crear los equipos y repositorios privados de trabajo de cada grupo.
+La conformación registrada en este documento será utilizada posteriormente por la cátedra para crear los equipos y repositorios privados de trabajo de cada equipo.
 
 Una vez conformado el grupo, sus integrantes deberán registrarlo en este documento, dentro de la comisión correspondiente.
 
@@ -31,7 +31,7 @@ RODRÍGUEZ Pedro - 34567 - pedrosystems
 LÓPEZ María - 45678 - marialopez
 ```
 
-> Los nombres, legajos y usurios del ejemplo son ficticios.
+> Los nombres, legajos y usuarios del ejemplo son ficticios.
 
 ---
 
@@ -43,21 +43,23 @@ LÓPEZ María - 45678 - marialopez
 
 Integrantes:
 
-CANALES Ignacio - 36851 - LeFlip
+CANALES Ignacio - 36851 - CANALESign
 
 BARRIENTOS Raquel - 36840 - Barrientos2001
+
+CINALLI Guadalupe - 36857 - Brannagh7
 
 GREGORI Ariel - 36717 - Ari-GG1
 
 ### TUP11 - Grupo 2
 
-Nahuel Rubio - 36608 - nahuel-sng
+RUBIO Nahuel - 36608 - nahuel-sng
 
-Pablo Courtis - 36862 - kourtis23
+COURTIS Pablo - 36862 - kourtis23
 
-Rodolfo Zualet - 36622 - rzualet
+ZUALET Rodolfo - 36622 - rzualet
 
-Sofia Reyna - 36600 - sofiabelenreyna-a11y
+REYNA Sofia - 36600 - sofiabelenreyna-a11y
 
 ### TUP11 - Grupo 3
 
@@ -105,6 +107,42 @@ KRMPOTIC Matías - 36724 - MatiasKrmpotic
 
 PINTO Tomás - 37102 - Tomipinto-716
 
+### TUP11 - Grupo 7
+
+Integrantes:
+
+RINGUELET Emilia - 36601 - emiliaringuelet
+
+ASNAGHI Catalina - 36836 - cataasnaghi08
+
+FERNANDEZ BOLLINI Tiago - 36709 - tiagofb
+
+SOTO Elio Agustin - 36612 - soto-agustin
+
+### TUP11 - Grupo 8
+
+Integrantes:
+
+BAVARO Mateo Julian - 36842 - MateoBávaro
+
+SALEM Rodríguez Ignacio - 36605 - NachoRSalem
+
+IZAURRALDE Bautista - 37021 - izaurraldebautista-svg
+
+UGARTE Matias - 935556 - MatiasUgarte
+
+### TUP11 - Grupo 9  
+
+Integrantes:
+
+DE LA TORRE Magdalena Regina - 36863 - Magdlt
+
+SANDOVAL Daiana Jimena - 36185 - DaianaSNDVL
+
+MARTÍNEZ PANIAGUA Milagros - 36733 - miliMartinezz  
+
+VISCUBI Danilo Luis - 37104 - daniloviscubi
+
 ---
 
 ## Comisión TUP13
@@ -131,15 +169,15 @@ FILARDO Hilda Aldana - filardohilda
 
 GOMEZ Santiago - 36715 - Santiago-Gomez14
 
-HARGUINDEGUY Camila - 36721
+HARGUINDEGUY Camila - 36721 - camilaharguindeguy
 
-OLIVA Nicolas -
+OLIVA Nicolas - 36594 - Nicolasoliva2025
 
 ### TUP13 - Grupo 3
 
 Integrantes:
 
-AMANDOLA Santiago -  - SanMar-089
+AMANDOLA Santiago - 36830 - SanMar-089
 
 PASSARO Leandro Hugo - 36596 - lhpassaro-UTN
 
@@ -175,8 +213,42 @@ ZOPPOLI Luciano - 37105 - luchozoppo
 
 Integrantes:
 
-MARTINEZ Maximiliano Nahuel
+PANIN SUAREZ Julian - 36595 - julipaninsuarez-sys
 
-EZQUIVEL David
+NADOR Kevin - 36584 - kevinnador
+
+FERIOLI Lucio - 36708 - ferioli02
+
+### TUP13 - Grupo 7
+
+Integrantes:
+
+MONTANARI Blas -  - blassmm
+
+BALSA Valentina -  - valenbalsa
+
+VEIGA Tobias - 36618 - TobiasVeiga00
+
+MASSA Laureano - 37101 - Laureano-GitHub
+
+### TUP13 - Grupo 8
+
+Integrantes:
+
+MARTINEZ Maximiliano Nahuel - 36732 - mnahuelmartinez
+
+ESQUIVEL David - 36707 - Davidesquivel-BSSO
 
 LENCINA Mauro Elìas - 37100 - maurolencina
+
+### TUP13 - Grupo 9
+
+Integrantes:
+
+BRIME Milagros - 36843 - MiliBrime
+
+CARRIZO Julia Mailen - 36854 - PochiCarrizo
+
+Ceccacci Jenaro - 36856 - Jenaro9
+
+VELOSO Brian - 36619 - braianveloso-byte
