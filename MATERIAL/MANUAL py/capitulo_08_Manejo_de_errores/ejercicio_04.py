@@ -7,14 +7,17 @@
 # -------------------------------------------------------------------------
 
 def calcular_imc(peso, altura):
-    if peso <= 0 or altura <= 0:
-        raise ValueError("Peso y altura deben ser positivos")
+    if peso <= 0:
+        raise ValueError("Peso debe ser positivo")
+    if altura <= 0:
+        raise ValueError("Altura debe ser positivo")
     return peso / (altura ** 2)
 
 
 # calcular_imc() lanza ValueError si algún valor es <= 0.
 # El except captura ese error y muestra el mensaje con "as e".
 try:
-    imc = calcular_imc(70, -1.75)
+    imc = calcular_imc(-70, -1.75)
+    print(imc)
 except ValueError as e:
     print(f"Error: {e}")
