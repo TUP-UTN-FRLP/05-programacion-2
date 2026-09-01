@@ -45,8 +45,8 @@ Copia el proyecto y su historial completo, y deja el remoto `origin` ya configur
 
 ### En la práctica
 
-`init` empieza desde una carpeta local.
-`clone` parte de un repositorio que ya existe.
+- `init` empieza desde una carpeta local.
+- `clone` parte de un repositorio que ya existe.
 
 La diferencia importa más de lo que parece: si se empieza con `init`, hay que agregar el remoto a mano antes de poder publicar (sección 5).
 
@@ -366,11 +366,11 @@ git push origin --tags
 
 ## Enlaces fuente
 
-- https://git-scm.com/book/es/v2/Fundamentos-de-Git-Obteniendo-un-repositorio-Git
-- https://git-scm.com/book/es/v2/Fundamentos-de-Git-Guardando-cambios-en-el-Repositorio
-- https://git-scm.com/book/es/v2/Fundamentos-de-Git-Ver-el-Historial-de-Confirmaciones
-- https://git-scm.com/book/es/v2/Fundamentos-de-Git-Deshacer-Cosas
-- https://git-scm.com/book/es/v2/Fundamentos-de-Git-Trabajar-con-Remotos
-- https://git-scm.com/book/es/v2/Fundamentos-de-Git-Etiquetado
-- https://git-scm.com/book/es/v2/Fundamentos-de-Git-Alias-de-Git
-- https://git-scm.com/book/es/v2/Fundamentos-de-Git-Resumen
+- <https://git-scm.com/book/es/v2/Fundamentos-de-Git-Obteniendo-un-repositorio-Git>
+- <https://git-scm.com/book/es/v2/Fundamentos-de-Git-Guardando-cambios-en-el-Repositorio>
+- <https://git-scm.com/book/es/v2/Fundamentos-de-Git-Ver-el-Historial-de-Confirmaciones>
+- <https://git-scm.com/book/es/v2/Fundamentos-de-Git-Deshacer-Cosas>
+- <https://git-scm.com/book/es/v2/Fundamentos-de-Git-Trabajar-con-Remotos>
+- <https://git-scm.com/book/es/v2/Fundamentos-de-Git-Etiquetado>
+- <https://git-scm.com/book/es/v2/Fundamentos-de-Git-Alias-de-Git>
+- <https://git-scm.com/book/es/v2/Fundamentos-de-Git-Resumen>

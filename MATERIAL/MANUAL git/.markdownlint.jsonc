@@ -1,0 +1,16 @@
+{
+  // Configuración para el "MANUAL git" (CAP01, CAP02, CAP03).
+  // Solo se desactivan reglas que chocan con decisiones de estilo
+  // deliberadas del apunte; los errores reales se corrigen en el texto.
+  "default": true,
+
+  // El apunte escribe prosa en un renglón por párrafo, sin envolver a 80 columnas.
+  "MD013": false,
+
+  // Cada sección numerada repite subtítulos ("En la práctica", "Lectura rápida",
+  // "Comandos básicos"). Son legítimos porque cuelgan de encabezados ## distintos.
+  "MD024": { "siblings_only": true },
+
+  // Las tablas de referencia usan separador compacto |---|---| a propósito.
+  "MD060": false
+}

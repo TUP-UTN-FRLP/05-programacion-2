@@ -370,10 +370,10 @@ Los pies de figura corresponden a los del libro. Si las imágenes se guardan en 
 
 ## Enlaces fuente
 
-- https://git-scm.com/book/es/v2/Ramificaciones-en-Git-%C2%BFQu%C3%A9-es-una-rama%3F
-- https://git-scm.com/book/es/v2/Ramificaciones-en-Git-Procedimientos-B%C3%A1sicos-para-Ramificar-y-Fusionar
-- https://git-scm.com/book/es/v2/Ramificaciones-en-Git-Gesti%C3%B3n-de-Ramas
-- https://git-scm.com/book/es/v2/Ramificaciones-en-Git-Flujos-de-Trabajo-Ramificados
-- https://git-scm.com/book/es/v2/Ramificaciones-en-Git-Ramas-Remotas
-- https://git-scm.com/book/es/v2/Ramificaciones-en-Git-Reorganizar-el-Trabajo-Realizado
-- https://git-scm.com/book/es/v2/Ramificaciones-en-Git-Recapitulaci%C3%B3n
+- <https://git-scm.com/book/es/v2/Ramificaciones-en-Git-%C2%BFQu%C3%A9-es-una-rama%3F>
+- <https://git-scm.com/book/es/v2/Ramificaciones-en-Git-Procedimientos-B%C3%A1sicos-para-Ramificar-y-Fusionar>
+- <https://git-scm.com/book/es/v2/Ramificaciones-en-Git-Gesti%C3%B3n-de-Ramas>
+- <https://git-scm.com/book/es/v2/Ramificaciones-en-Git-Flujos-de-Trabajo-Ramificados>
+- <https://git-scm.com/book/es/v2/Ramificaciones-en-Git-Ramas-Remotas>
+- <https://git-scm.com/book/es/v2/Ramificaciones-en-Git-Reorganizar-el-Trabajo-Realizado>
+- <https://git-scm.com/book/es/v2/Ramificaciones-en-Git-Recapitulaci%C3%B3n>

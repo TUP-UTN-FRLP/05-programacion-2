@@ -50,12 +50,15 @@ Git reemplaza ese caos por un historial explícito y consultable.
 ## 2. Modelos de control de versiones
 
 ### Local
+
 El historial queda en una sola computadora.
 
 ### Centralizado
+
 Hay un servidor central que concentra el historial del equipo.
 
 ### Distribuido
+
 Cada clon del repositorio contiene una copia completa del historial.
 
 ### Comparación rápida
@@ -286,10 +289,10 @@ Las figuras enlazadas arriba se cargan directamente desde `git-scm.com`, así qu
 
 ## Enlaces fuente
 
-- https://git-scm.com/book/es/v2/Inicio---Sobre-el-Control-de-Versiones-Acerca-del-Control-de-Versiones
-- https://git-scm.com/book/es/v2/Inicio---Sobre-el-Control-de-Versiones-Una-breve-historia-de-Git
-- https://git-scm.com/book/es/v2/Inicio---Sobre-el-Control-de-Versiones-Fundamentos-de-Git
-- https://git-scm.com/book/es/v2/Inicio---Sobre-el-Control-de-Versiones-La-L%C3%ADnea-de-Comandos
-- https://git-scm.com/book/es/v2/Inicio---Sobre-el-Control-de-Versiones-Configurando-Git-por-primera-vez
-- https://git-scm.com/book/es/v2/Inicio---Sobre-el-Control-de-Versiones-%C2%BFC%C3%B3mo-obtener-ayuda%3F
-- https://git-scm.com/book/es/v2/Inicio---Sobre-el-Control-de-Versiones-Resumen
+- <https://git-scm.com/book/es/v2/Inicio---Sobre-el-Control-de-Versiones-Acerca-del-Control-de-Versiones>
+- <https://git-scm.com/book/es/v2/Inicio---Sobre-el-Control-de-Versiones-Una-breve-historia-de-Git>
+- <https://git-scm.com/book/es/v2/Inicio---Sobre-el-Control-de-Versiones-Fundamentos-de-Git>
+- <https://git-scm.com/book/es/v2/Inicio---Sobre-el-Control-de-Versiones-La-L%C3%ADnea-de-Comandos>
+- <https://git-scm.com/book/es/v2/Inicio---Sobre-el-Control-de-Versiones-Configurando-Git-por-primera-vez>
+- <https://git-scm.com/book/es/v2/Inicio---Sobre-el-Control-de-Versiones-%C2%BFC%C3%B3mo-obtener-ayuda%3F>
+- <https://git-scm.com/book/es/v2/Inicio---Sobre-el-Control-de-Versiones-Resumen>
