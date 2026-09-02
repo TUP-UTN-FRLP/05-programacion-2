@@ -170,6 +170,24 @@ No se divide el trabajo de la clase entre integrantes.
 
 ---
 
+## Sobre el archivo `test.py`
+
+En el repositorio del grupo puede aparecer un archivo `test.py` provisto por la
+cátedra.
+
+**En esta iteración no se usa ni se agrega:** no se ejecuta, no se modifica y
+no se instala `pytest`. No forma parte de la entrega de la Iteración 1.
+
+Está únicamente como **referencia para el estudiante**: se puede abrir y leer
+para ver, escrito en código, qué comportamiento se va a verificar más adelante.
+El trabajo con `pytest` se incorpora recién en la Iteración 4, para no sumar
+una herramienta más mientras se aprenden los primeros conceptos de POO.
+
+La verificación de esta iteración es la que se describe en las secciones
+siguientes: ejecutar el escenario de `banco.py` y observar la salida.
+
+---
+
 ## Pruebas obligatorias
 
 Cada estudiante deberá demostrar en su propia solución que puede:
