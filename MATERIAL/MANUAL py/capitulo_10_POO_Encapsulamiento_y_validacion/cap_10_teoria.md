@@ -1,6 +1,6 @@
 # POO: Encapsulamiento y validación
 
-_Especializando comportamiento._
+_La clase que se defiende sola._
 
 ## ¿Por qué leemos este capítulo?
 
