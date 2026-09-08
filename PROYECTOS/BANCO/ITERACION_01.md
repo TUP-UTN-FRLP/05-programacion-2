@@ -180,7 +180,7 @@ no se instala `pytest`. No forma parte de la entrega de la Iteración 1.
 
 Está únicamente como **referencia para el estudiante**: se puede abrir y leer
 para ver, escrito en código, qué comportamiento se va a verificar más adelante.
-El trabajo con `pytest` se incorpora recién en la Iteración 4, para no sumar
+El trabajo con `pytest` se incorpora recién en la Iteración 3, para no sumar
 una herramienta más mientras se aprenden los primeros conceptos de POO.
 
 La verificación de esta iteración es la que se describe en las secciones

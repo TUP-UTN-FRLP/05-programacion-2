@@ -1,0 +1,49 @@
+# Proyecto Integrador Banco
+#
+# En este repositorio se versionan SOLO los materiales de la catedra:
+#
+#   - las consignas            ITERACION_01.md ... ITERACION_05.md
+#   - los contratos / guias    TDD_ITERACION_02.md ... TDD_ITERACION_05.md
+#   - la Iteracion 1 completa  ITERACION-01/   (referencia de arranque)
+#   - README.md y GUIA_GIT.md
+#
+# El codigo de las iteraciones 2 a 5 (ITERACION-02/ ... ITERACION-05/) es
+# material de resolucion de referencia: queda en el disco para consultarlo,
+# pero NO se sube al repo compartido de la clase. Cada grupo lo desarrolla
+# en su propio repositorio privado.
+#
+# Las GUIA_TESTS_ITERACION_0N.md tampoco se versionan: citan el codigo de
+# los test.py y de tests/, o sea material de resolucion. Son notas internas.
+
+# --- Codigo de las iteraciones 2 a 5 (no se rastrea) ---
+/ITERACION-02/
+/ITERACION-03/
+/ITERACION-04/
+/ITERACION-05/
+
+# --- Material interno de revision ---
+/base/
+/GUIA_TESTS_ITERACION_*.md
+
+# --- Contrato de la catedra suelto en la raiz de BANCO ---
+# (la copia que se entrega vive dentro de cada carpeta ITERACION-0N/)
+/test.py
+
+# --- Artefactos de Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+.mypy_cache/
+
+# --- Entornos virtuales ---
+.venv/
+venv/
+env/
+
+# --- Editores ---
+.idea/
+.vscode/

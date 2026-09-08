@@ -82,7 +82,7 @@ Una `Cuenta` **tiene un titular**, que debe ser un objeto `Persona`. Esto es
 > `test.py`, y más adelante se trabaja con `pytest`. En esta iteración **no se
 > usan ni se crean**: se mencionan para que se sepa que existen, pero la
 > verificación se hace igual que en la Iteración 1, ejecutando el escenario de
-> `banco.py`. `pytest` se incorpora formalmente en la Iteración 4. No hace falta
+> `banco.py`. `pytest` se empieza a ejecutar en la Iteración 3. No hace falta
 > instalarlo ahora.
 
 Hay una guía de acompañamiento para los grupos en `INICIO_ITERACION_02.md`
@@ -416,7 +416,7 @@ Qué es cada cosa y por qué molesta tenerlo en el repo está explicado en
 `INICIO_ITERACION_02.md`. Si en la Iteración 1 quedó algún `__pycache__/`
 commiteado, sacarlo con `git rm -r --cached __pycache__`.
 
-> En la Iteración 4, al empezar a usar `pytest`, se agrega también la línea
+> En la Iteración 3, al empezar a ejecutar `pytest`, se agrega también la línea
 > `.pytest_cache/`. Ahora no hace falta porque no se ejecuta `pytest`.
 
 ---
@@ -442,8 +442,9 @@ las operaciones `depositar()` / `extraer()`.
 
 En la Iteración 2 **no se ejecuta** `pytest`. El archivo se incluye para poder
 leerlo como referencia del contrato y para que quede en el repositorio; el
-trabajo con `pytest` (instalación, ejecución, ciclo TDD, `pytest.ini`) se
-incorpora en la Iteración 4, cuando el código deja de cambiar tanto.
+trabajo con `pytest` (instalación, ejecución, `pytest.ini`) se incorpora en la
+Iteración 3, y este mismo `test.py` sirve de molde para escribir los tests
+propios de esa iteración.
 
 La verificación de esta iteración se hace como en la Iteración 1: ejecutando el
 escenario de `banco.py` (sección 5) y comprobando que las operaciones válidas

@@ -4,8 +4,8 @@
 > describen, en detalle, el comportamiento que deben tener `Persona`, `Cuenta` y
 > `validaciones.py`. En esta iteración se usan solo como **referencia de
 > lectura** y como lista de casos para comprobar a mano dentro del escenario de
-> `banco.py`. La ejecución de `test.py` con `pytest` (instalación, ciclo TDD,
-> `pytest.ini`) se incorpora en la **Iteración 4**.
+> `banco.py`. La ejecución de `test.py` con `pytest` (instalación, `pytest.ini`)
+> se incorpora en la **Iteración 3**.
 
 ## Propósito
 
@@ -31,7 +31,7 @@ de `banco.py`. Eso queda a cargo del estudiante.
 ```text
 banco.py          # clases Persona y Cuenta
 validaciones.py   # funciones de validación
-test.py           # esta suite (referencia; se ejecuta a partir de la Iteración 4)
+test.py           # esta suite (referencia; se ejecuta a partir de la Iteración 3)
 .gitignore        # archivos que no se versionan
 ```
 
@@ -60,9 +60,9 @@ concreto: qué entrada recibe la clase o la validación y qué se espera (un val
 normalizado o una excepción). Cada uno de esos casos se puede reproducir a mano
 dentro del escenario de `banco.py` para comprobar el comportamiento.
 
-## Cómo se ejecutará (Iteración 4)
+## Cómo se ejecutará (Iteración 3)
 
-A partir de la Iteración 4, con `pytest` ya incorporado:
+A partir de la Iteración 3, con `pytest` ya incorporado:
 
 ```bash
 python -m pip install pytest      # una sola vez
