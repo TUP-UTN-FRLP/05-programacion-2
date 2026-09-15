@@ -33,6 +33,7 @@ class Gerente(Empleado):
 
 
 empleado = Empleado("Juan")
+
 gerente = Gerente("Ana", ["Juan", "Pedro", "Lucía"])
 
 empleado.presentarse()
