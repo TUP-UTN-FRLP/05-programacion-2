@@ -174,16 +174,22 @@ test: agrega pruebas de cierre de periodo para cuenta sueldo
 
 ### Tabla de tipos
 
-| Tipo       | Cuándo usarlo                                                                 | Ejemplo |
-|------------|--------------------------------------------------------------------------------|---------|
-| `feat`     | Agrega una funcionalidad nueva que antes no existía.                          | `feat: agrega CuentaSueldo con retencion sobre el excedente` |
-| `fix`      | Corrige un comportamiento incorrecto (un bug).                                | `fix: evita que se cierre una cuenta con saldo distinto de cero` |
-| `refactor` | Reorganiza o mejora código existente **sin cambiar su comportamiento**.       | `refactor: mueve las excepciones a banco/errores.py` |
-| `test`     | Agrega o modifica pruebas, sin tocar el código de producción.                 | `test: agrega casos de descubierto en cuenta corriente` |
-| `docs`     | Cambios en documentación (README, comentarios de consigna, este tipo de guías).| `docs: agrega ejemplos de uso al README` |
-| `style`    | Cambios que no afectan el comportamiento: formato, espacios, nombres de estilo (no confundir con `refactor`, que sí puede cambiar estructura interna). | `style: aplica formato consistente en banco.py` |
-| `chore`    | Tareas de mantenimiento que no son ni código de producción ni pruebas ni docs (configuración, dependencias, `.gitignore`). | `chore: agrega __pycache__ al gitignore` |
-| `perf`     | Mejora el rendimiento sin cambiar el comportamiento observable.               | `perf: evita recorrer el historial dos veces en cierre_de_periodo` |
+| Tipo       | Cuándo usarlo                                                            | Ejemplo                                                            |
+|------------|--------------------------------------------------------------------------|--------------------------------------------------------------------|
+| `feat`     | Agrega una funcionalidad nueva que antes no existía.                     | `feat: agrega CuentaSueldo con retencion sobre el excedente`       |
+| `fix`      | Corrige un comportamiento incorrecto (un bug).                           | `fix: evita que se cierre una cuenta con saldo distinto de cero`   |
+| `refactor` | Reorganiza o mejora código existente sin cambiar su comportamiento.      | `refactor: mueve las excepciones a banco/errores.py`               |
+| `test`     | Agrega o modifica pruebas, sin tocar el código de producción.            | `test: agrega casos de descubierto en cuenta corriente`            |
+| `docs`     | Cambios en documentación (README, guías, comentarios de consigna).       | `docs: agrega ejemplos de uso al README`                           |
+| `style`    | Cambios de formato que no afectan el comportamiento (espacios, nombres). | `style: aplica formato consistente en banco.py`                    |
+| `chore`    | Tareas de mantenimiento: configuración, dependencias, `.gitignore`.      | `chore: agrega __pycache__ al gitignore`                           |
+| `perf`     | Mejora el rendimiento sin cambiar el comportamiento observable.          | `perf: evita recorrer el historial dos veces en cierre_de_periodo` |
+
+> **Nota:** no confundas `style` con `refactor`. `style` son cambios
+> puramente formales (espacios, nombres, orden de imports) que no
+> tocan la estructura del código. `refactor` sí puede cambiar la
+> estructura interna (mover código a otro módulo, extraer una
+> función), siempre que el comportamiento observable sea el mismo.
 
 ### Cómo elegir el tipo correcto
 
@@ -249,16 +255,16 @@ que sabés que falta.
 Ejemplo concreto para un PR individual de la Iteración 3:
 
 ``` text
-## Que implementa
+## Qué implementa
 Agrega CuentaAhorro y CuentaCorriente con validacion de saldo inicial
 en 0 (toda carga se hace por `depositar`).
 
-## Como lo probe
+## Cómo lo probé
 python -m pytest -q -> 14 passed
-Agregue casos propios en tests/test_cuentas.py para el descubierto.
+Agregué casos propios en tests/test_cuentas.py para el descubierto.
 
 ## Decisiones y limitaciones
-Todavia no implemente cierre_de_periodo, queda para revisar con el grupo.
+Todavía no implementé cierre_de_periodo, queda para revisar con el grupo.
 ```
 
 No hace falta un informe extenso (esto ya lo aclara `GUIA_GIT.md`):
