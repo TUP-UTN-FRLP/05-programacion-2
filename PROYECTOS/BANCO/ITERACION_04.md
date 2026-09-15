@@ -154,7 +154,6 @@ class DniInvalidoError(ErrorDeValidacion): ...
 class CuitInvalidoError(ErrorDeValidacion): ...
 class CbuInvalidoError(ErrorDeValidacion): ...
 class MontoInvalidoError(ErrorDeValidacion): ...
-class SaldoInicialInvalidoError(ErrorDeValidacion): ...
 
 class ErrorDeOperacion(BancoError): ...
 class SaldoInsuficienteError(ErrorDeOperacion): ...
@@ -446,20 +445,22 @@ cuenta. Por eso `Cuenta` lo recibe como parámetro **solo por nombre**, con
 
 ```python
 class Cuenta:
-    def __init__(self, numero, titular, saldo_inicial=0, *, cbu=None):
+    def __init__(self, numero, titular, *, cbu=None):
         ...
 ```
 
-El `*` obliga a que `cbu` se pase con nombre, así los tres parámetros
-posicionales de la Iteración 3 no cambian y las subclases siguen recibiendo
-`tasa_interes` y `limite_descubierto` en la misma posición de siempre. Cada
-subclase reenvía los argumentos con nombre a la base:
+Se mantiene la regla de la Iteración 3: el constructor **no recibe
+`saldo_inicial`**. Ninguna cuenta se crea con saldo — nace en `0` y sin
+movimientos. El `*` obliga a que `cbu` se pase con nombre, así los dos
+parámetros posicionales (`numero`, `titular`) no cambian y las subclases
+siguen recibiendo `tasa_interes` y `limite_descubierto` como argumentos con
+nombre. Cada subclase reenvía los argumentos con nombre a la base:
 
 ```python
 class CuentaAhorro(Cuenta):
-    def __init__(self, numero, titular, saldo_inicial=0,
+    def __init__(self, numero, titular,
                  tasa_interes=TASA_POR_DEFECTO, **kwargs):
-        super().__init__(numero, titular, saldo_inicial, **kwargs)
+        super().__init__(numero, titular, **kwargs)
         ...
 ```
 
@@ -506,11 +507,23 @@ listar_cuentas() -> list[Cuenta]
 cerrar_cuenta(cbu) -> Cuenta
 ```
 
+> **Por qué `saldo_inicial` sigue en `abrir_cuenta` pero no en `Cuenta`.**
+> El banco no permite abrir una cuenta que ya nazca con fondos: `Cuenta` (y
+> sus subclases) construyen siempre con saldo `0`. Pero es habitual pedirle
+> al banco que abra una cuenta *con* un depósito inicial — eso lo resuelve
+> `Banco.abrir_cuenta`, no el constructor: primero crea la cuenta en `0` y
+> recién después, si `saldo_inicial` es distinto de `0`, llama a
+> `cuenta.depositar(saldo_inicial, _motivo="APERTURA")`. Es un depósito como
+> cualquier otro, con otra etiqueta en el historial — no un caso especial.
+
 Reglas:
 
-- `abrir_cuenta` genera el número y el CBU, construye la cuenta del tipo pedido
-  y la registra. Devuelve la cuenta creada y registra un movimiento
-  `"APERTURA"` si el saldo inicial es mayor que `0`;
+- `abrir_cuenta` genera el número y el CBU, construye la cuenta del tipo
+  pedido (siempre en `0`) y la registra. Si `saldo_inicial` es distinto de
+  `0`, lo carga con `depositar(saldo_inicial, _motivo="APERTURA")`, lo que
+  deja un movimiento `"APERTURA"` en el historial; si `saldo_inicial` es `0`
+  (el valor por defecto), la cuenta queda sin movimientos. Devuelve la
+  cuenta creada;
 - `tipo` es un `str` (`"AHORRO"` / `"CORRIENTE"`); un tipo desconocido →
   `ErrorDeValidacion`;
 - los parámetros propios de cada tipo (`tasa_interes`, `limite_descubierto`)
