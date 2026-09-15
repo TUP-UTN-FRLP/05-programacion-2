@@ -253,17 +253,26 @@ cambiado).
 
 ### `Cuenta` (clase base)
 
-Es la `Cuenta` de la Iteración 2, con dos cambios:
+Es la `Cuenta` de la Iteración 2, con tres cambios:
 
 ```python
-Cuenta(numero, titular, saldo_inicial=0)
+Cuenta(numero, titular)
 ```
 
 - `titular` debe ser una `Persona` (cualquier subclase sirve);
-- se agrega el método `resumen()`.
+- se agrega el método `resumen()`;
+- **el constructor ya no recibe saldo.** Toda cuenta nace con `saldo == 0`;
+  no existe forma de crearla con fondos.
 
-Se conservan sin cambios: número de 14 dígitos, saldo no negativo al crear,
-properties de solo lectura, `depositar()` y `extraer()` con validación.
+> **Por qué:** el banco no permite abrir una cuenta que ya tenga plata
+> cargada. Ninguna cuenta se crea que no sea con saldo 0. Si el banco
+> necesita darle un saldo inicial a una cuenta recién abierta, lo hace
+> llamando a `depositar()` justo después de crearla — igual que cualquier
+> otro movimiento posterior. Por eso `validar_saldo_inicial` desaparece de
+> `validaciones.py`: al no existir el parámetro, no hay nada que validar.
+
+Se conservan sin cambios: número de 14 dígitos, properties de solo lectura,
+`depositar()` y `extraer()` con validación.
 
 #### `resumen()`
 
@@ -291,7 +300,7 @@ escribir el nombre del tipo a mano.
 ### `CuentaAhorro(Cuenta)`
 
 ```python
-CuentaAhorro(numero, titular, saldo_inicial=0, tasa_interes=0.01)
+CuentaAhorro(numero, titular, tasa_interes=0.01)
 ```
 
 ```text
@@ -318,7 +327,7 @@ TASA_POR_DEFECTO = 0.01
 ### `CuentaCorriente(Cuenta)`
 
 ```python
-CuentaCorriente(numero, titular, saldo_inicial=0, limite_descubierto=0)
+CuentaCorriente(numero, titular, limite_descubierto=0)
 ```
 
 ```text
@@ -375,9 +384,12 @@ validar_tasa(valor)           # -> float entre 0 y 1
 validar_limite(valor)         # -> int/float >= 0
 ```
 
-Se conservan sin cambios las cinco de la Iteración 2. Mismo criterio:
-`TypeError` para el tipo, `ValueError` para el valor, sin `print()` ni
-`input()`, sin depender de ninguna clase.
+Se conservan `validar_nombre`, `validar_dni`, `validar_numero_cuenta` y
+`validar_monto` de la Iteración 2. **`validar_saldo_inicial` desaparece**:
+como ninguna cuenta admite saldo al crearse, no queda nada que validar ahí
+(ver la explicación en la sección de `Cuenta`, más arriba). Mismo criterio
+para las que quedan: `TypeError` para el tipo, `ValueError` para el valor,
+sin `print()` ni `input()`, sin depender de ninguna clase.
 
 ---
 
@@ -402,8 +414,8 @@ Dentro de `if __name__ == "__main__":`:
 PersonaFisica("Ana", "Perez", "12345678", 15)          # ValueError (menor)
 PersonaJuridica("Distribuidora S.A.", "30712345670")   # ValueError (verificador)
 PersonaJuridica("Distribuidora S.A.", 30712345671)     # TypeError
-CuentaAhorro("12345678901234", titular, 0, 1.5)        # ValueError (tasa)
-CuentaCorriente("12345678901234", titular, 0, -100)    # ValueError (límite)
+CuentaAhorro("12345678901234", titular, 1.5)           # ValueError (tasa)
+CuentaCorriente("12345678901234", titular, -100)       # ValueError (límite)
 ahorro.extraer(999999)                                 # ValueError
 ahorro.saldo = 99999                                   # AttributeError
 ```
@@ -471,6 +483,8 @@ python -m pytest -q
 
 - ninguna subclase repite una validación que ya hace su clase base;
 - todos los constructores de las subclases llaman a `super().__init__(...)`;
+- toda cuenta se crea con `saldo == 0`, sin excepción; un saldo inicial se
+  carga con `depositar()`, nunca con un parámetro del constructor;
 - una `CuentaAhorro` nunca queda con saldo negativo;
 - una `CuentaCorriente` puede quedar negativa, pero solo hasta su límite;
 - `identificacion` y `resumen()` devuelven cosas distintas según el objeto, con
