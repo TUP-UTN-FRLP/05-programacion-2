@@ -258,10 +258,14 @@ la Iteración 4.
 ## 3. `CuentaSueldo`: la prueba del OCP
 
 ```python
-CuentaSueldo(numero, titular, saldo_inicial=0, tope_libre_retencion=3_000_000)
+CuentaSueldo(numero, titular, *, cbu=None, tope_libre_retencion=3_000_000)
 ```
 
 Reglas:
+
+- se mantiene la regla de las iteraciones anteriores: el constructor **no
+  recibe `saldo_inicial`**; toda cuenta nace con saldo `0` (ver la sección de
+  `Cuenta` más abajo);
 
 - **no cobra mantenimiento**;
 - **no permite descubierto** (igual que la caja de ahorro);
@@ -440,8 +444,8 @@ class CuentaAhorro(Cuenta):
     TIPO: str = "Caja de Ahorro"
     TASA_POR_DEFECTO: float = 0.01
 
-    def __init__(self, numero: str, titular: Persona,
-                 saldo_inicial: float = 0,
+    def __init__(self, numero: str, titular: Persona, *,
+                 cbu: str | None = None,
                  tasa_interes: float = TASA_POR_DEFECTO) -> None: ...
 
     def cierre_de_periodo(self) -> float: ...
