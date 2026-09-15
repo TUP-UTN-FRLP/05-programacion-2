@@ -94,9 +94,15 @@ def banco():
 
 @pytest.fixture(params=CLASES_CONCRETAS, ids=lambda c: c.__name__)
 def cualquier_cuenta(request, titular):
-    """Una instancia de CADA tipo concreto de cuenta, con $10.000."""
+    """Una instancia de CADA tipo concreto de cuenta, con $10.000.
+
+    Se mantiene la regla de las iteraciones anteriores: ninguna cuenta se
+    crea con saldo. Se construye en 0 y se carga con depositar().
+    """
     clase = request.param
-    return clase("00000123456789", titular, 10_000)
+    cuenta = clase("00000123456789", titular)
+    cuenta.depositar(10_000)
+    return cuenta
 ```
 
 La última es la fixture clave de la iteración. Un test que la reciba **se
@@ -169,7 +175,7 @@ Contrato completo que debe cumplir **toda** subclase concreta:
 | # | Regla | Cómo se verifica |
 | --- | --- | --- |
 | L1 | hereda de `Cuenta` | `issubclass` |
-| L2 | se puede instanciar con `(numero, titular, saldo_inicial)` | la fixture |
+| L2 | se puede instanciar con `(numero, titular)`, siempre en saldo `0` | la fixture |
 | L3 | no sobrescribe `extraer` ni `depositar` | `"extraer" not in clase.__dict__` |
 | L4 | redefine `TIPO` | `clase.TIPO != Cuenta.TIPO` |
 | L5 | implementa `_validar_extraccion` y `cierre_de_periodo` | `clase.__abstractmethods__ == frozenset()` |
