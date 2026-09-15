@@ -48,4 +48,4 @@ banda = [
 ]
 
 for instrumento in banda:
-    print(instrumento)
+    print(instrumento.tocar())
