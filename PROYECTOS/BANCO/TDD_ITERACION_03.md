@@ -5,6 +5,14 @@
 > se corre (`python -m pytest -q`) y pasarla completa es condición de entrega.
 > Herramienta y puesta en marcha: `GUIA_TESTS_ITERACION_03.md`.
 
+> **Regla nueva: ninguna cuenta se crea con saldo.** El banco no permite abrir
+> una cuenta con fondos ya cargados: toda `Cuenta` (y sus subclases) nace con
+> `saldo == 0`. Si el banco tiene que darle un saldo inicial a una cuenta, lo
+> hace llamando a `depositar()` justo después de crearla, exactamente igual
+> que cualquier otro movimiento posterior. Por eso el constructor **ya no
+> recibe `saldo_inicial`** y `validar_saldo_inicial` desaparece de
+> `validaciones.py`: no hay nada que validar si el parámetro no existe.
+
 ## Propósito
 
 `test.py` es el **contrato técnico** de la iteración: fija los nombres y el
@@ -49,7 +57,6 @@ from validaciones import (
     validar_nombre,
     validar_numero_cuenta,
     validar_razon_social,
-    validar_saldo_inicial,
     validar_tasa,
 )
 ```
@@ -66,7 +73,6 @@ esos.
 | `validar_nombre(v)` | `str` con `title()` | no es `str` | vacío o caracteres no permitidos |
 | `validar_dni(v)` | `str` tal cual | no es `str` | no son 7 u 8 dígitos |
 | `validar_numero_cuenta(v)` | `str` tal cual | no es `str` | no son 14 dígitos |
-| `validar_saldo_inicial(v)` | `int`/`float` | no numérico, o `bool` | negativo |
 | `validar_monto(v)` | `int`/`float` | no numérico, o `bool` | `<= 0` |
 | `validar_razon_social(v)` | `str` normalizado | no es `str` | vacío o caracteres no permitidos |
 | `validar_cuit(v)` | `str` de 11 dígitos | no es `str` | no son 11 dígitos, o el verificador no cierra |
@@ -201,7 +207,8 @@ PersonaJuridica(razon_social, cuit)
 
 ## Contrato de `Cuenta` (clase base)
 
-Se conserva íntegro el contrato de la Iteración 2, con dos agregados.
+Se conserva la mayor parte del contrato de la Iteración 2, con dos agregados
+y un cambio importante: el constructor ya no recibe saldo.
 
 | Caso | Esperado |
 | --- | --- |
@@ -209,7 +216,7 @@ Se conserva íntegro el contrato de la Iteración 2, con dos agregados.
 | `numero` no `str` / no 14 dígitos | `TypeError` / `ValueError` |
 | `titular` que no es `Persona` | `TypeError` |
 | `titular` `PersonaFisica` o `PersonaJuridica` | aceptado |
-| `saldo_inicial` negativo / `bool` | `ValueError` / `TypeError` |
+| `Cuenta(numero, titular)` | `cuenta.saldo == 0` siempre, sin excepción |
 | `cuenta.saldo = 9999` | `AttributeError` |
 | `depositar(monto)` válido | el saldo aumenta exactamente en `monto` |
 | `depositar(0)` / `depositar(-1)` | `ValueError`, saldo sin cambios |
@@ -222,7 +229,7 @@ Se conserva íntegro el contrato de la Iteración 2, con dos agregados.
 ## Contrato de `CuentaAhorro`
 
 ```python
-CuentaAhorro(numero, titular, saldo_inicial=0, tasa_interes=0.01)
+CuentaAhorro(numero, titular, tasa_interes=0.01)
 ```
 
 | Caso | Esperado |
@@ -234,12 +241,12 @@ CuentaAhorro(numero, titular, saldo_inicial=0, tasa_interes=0.01)
 | `tasa_interes` fuera de `[0, 1]` | `ValueError` |
 | `tasa_interes` `str` o `bool` | `TypeError` |
 | `cuenta.tasa_interes = 0.5` | `AttributeError` |
-| saldo 1000, `extraer(1000)` | permitido, saldo `0` |
-| saldo 1000, `extraer(1000.01)` | `ValueError`, saldo sin cambios |
+| recién creada, `depositar(1000)`, luego `extraer(1000)` | permitido, saldo `0` |
+| saldo 1000 (por `depositar`), `extraer(1000.01)` | `ValueError`, saldo sin cambios |
 | saldo 0, `extraer(1)` | `ValueError` |
 | `extraer(-100)` | `ValueError` (regla heredada) |
 | `extraer("100")` | `TypeError` (regla heredada) |
-| saldo 1000, tasa 0.01, `liquidar_interes()` | devuelve `10`, saldo `1010` |
+| saldo 1000 (por `depositar`), tasa 0.01, `liquidar_interes()` | devuelve `10`, saldo `1010` |
 | saldo 0, `liquidar_interes()` | devuelve `0`, saldo `0` |
 | `resumen()` | además del texto base, incluye la tasa |
 
@@ -251,7 +258,7 @@ CuentaAhorro(numero, titular, saldo_inicial=0, tasa_interes=0.01)
 ## Contrato de `CuentaCorriente`
 
 ```python
-CuentaCorriente(numero, titular, saldo_inicial=0, limite_descubierto=0)
+CuentaCorriente(numero, titular, limite_descubierto=0)
 ```
 
 | Caso | Esperado |
@@ -264,9 +271,9 @@ CuentaCorriente(numero, titular, saldo_inicial=0, limite_descubierto=0)
 | `limite_descubierto` `bool` o `str` | `TypeError` |
 | `cuenta.limite_descubierto = 5000` | `AttributeError` |
 | `saldo_disponible` | `saldo + limite_descubierto`, recalculado tras cada operación |
-| saldo 1000, límite 5000, `extraer(6000)` | permitido, saldo `-5000` |
-| saldo 1000, límite 5000, `extraer(6000.01)` | `ValueError`, saldo sin cambios |
-| saldo 1000, límite 0, `extraer(1001)` | `ValueError` |
+| saldo 1000 (por `depositar`), límite 5000, `extraer(6000)` | permitido, saldo `-5000` |
+| saldo 1000 (por `depositar`), límite 5000, `extraer(6000.01)` | `ValueError`, saldo sin cambios |
+| saldo 1000 (por `depositar`), límite 0, `extraer(1001)` | `ValueError` |
 | `cobrar_mantenimiento()` | descuenta `COSTO_MANTENIMIENTO`; puede dejar saldo negativo |
 | `resumen()` | además del texto base, incluye límite y disponible |
 
@@ -305,8 +312,9 @@ heredado. Es la forma directa de comprobar que no se duplicó código.
 Cualquier clase que herede de `Cuenta` —hoy dos, en la Iteración 5 tres— debe
 cumplir:
 
-1. su `__init__` llama a `super().__init__(numero, titular, saldo_inicial)` con
-   los mismos tres primeros parámetros y en el mismo orden;
+1. su `__init__` llama a `super().__init__(numero, titular)` con los mismos
+   dos primeros parámetros y en el mismo orden — sin pasar saldo, porque el
+   constructor de `Cuenta` no lo recibe;
 2. no exige parámetros obligatorios adicionales en `extraer()` ni en
    `depositar()`;
 3. no relaja las validaciones de la clase base (lo que la base rechaza, la
