@@ -113,8 +113,6 @@ Integrantes:
 
 RINGUELET Emilia - 36601 - emiliaringuelet
 
-ASNAGHI Catalina - 36836 - cataasnaghi08
-
 FERNANDEZ BOLLINI Tiago - 36709 - tiagofb
 
 SOTO Elio Agustin - 36612 - soto-agustin
