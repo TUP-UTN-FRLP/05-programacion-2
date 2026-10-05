@@ -1,5 +1,13 @@
 # Guía para desarrollar los tests — Iteración 4
 
+> **Antes de avanzar:** completen el paso previo de
+> [ITERACION_04.md](ITERACION_04.md#antes-de-comenzar-volver-sobre-iteración-3):
+> reemplazar el `test.py` de Iteración 3 por el que publique la cátedra el
+> lunes 12/10/2026, volver a ejecutar las pruebas y escribir
+> `REFLEXION_TESTS_ITERACION_03.md` entre todos, **sin IA y con sus propias
+> palabras**. En clase se preguntará a los grupos por esa reflexión.
+> La reorganización en `tests/` que sigue se realiza después de comprobar I3.
+
 > **`test.py` ya se ejecuta desde la Iteración 3** y que pase es
 > condición de entrega. El archivo de la cátedra **no se toca**. Lo
 > nuevo acá: tus pruebas dejan de vivir en un solo archivo y pasan a

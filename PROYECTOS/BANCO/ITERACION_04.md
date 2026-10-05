@@ -1,5 +1,71 @@
 # Proyecto Integrador Banco — Iteración 4
 
+## Antes de comenzar: volver sobre Iteración 3
+
+La cátedra publicará el **lunes 12/10/2026**, después de la entrega de
+Iteración 3, el `test.py` de referencia. Antes de empezar a agregar las
+funcionalidades de Iteración 4, cada integrante y el grupo deben hacer este
+recorrido:
+
+1. Guardar su `test.py` actual en un commit, para conservarlo en el historial.
+2. Descargar el archivo que publique la cátedra y **reemplazar con él el
+   `test.py` de su repositorio privado**. No se agrega un segundo archivo de
+   pruebas para esta verificación de Iteración 3.
+3. Desde la carpeta del proyecto, ejecutar:
+
+   ```bash
+   python -m pytest --collect-only -q
+   python -m pytest -q
+   python banco.py
+   ```
+
+4. Leer los resultados, corregir los comportamientos pendientes en el código
+   y volver a ejecutar. Si una diferencia no se entiende, traer la duda a
+   clase: no cambiar las expectativas del test para ocultarla.
+5. Repetir la comprobación sobre la versión integrada. **Verificar Iteración 3
+   con la suite publicada antes de avanzar a Iteración 4.** Este paso se hace
+   todavía con la estructura de archivos de Iteración 3; la reorganización en
+   módulos y `tests/` que aparece más abajo viene después.
+
+Es esperable que sus primeras pruebas no contemplen todos los casos. Están
+bien encaminados: con las próximas iteraciones iremos aprendiendo a elegir
+datos, comprobar límites e interpretar los resultados. La comparación sirve
+para aprender de esas diferencias, no para alcanzar un número de tests.
+
+### Reflexión grupal sobre las pruebas
+
+Después de ejecutar y comparar ambas versiones, escriban en la raíz del
+repositorio **`REFLEXION_TESTS_ITERACION_03.md`**, elaborado entre todos los
+integrantes. Incluyan los nombres de quienes participaron y conversen estas
+preguntas antes de escribir:
+
+- ¿Qué comportamientos comprobaban nuestros tests? Elijan dos ejemplos
+  concretos y expliquen qué esperaban observar.
+- ¿Qué casos encontramos en la suite de la cátedra que no habíamos pensado?
+  Por ejemplo, un valor límite, un tipo incorrecto o una operación que debía
+  dejar el saldo sin cambios. Expliquen por qué ese caso resulta útil.
+- ¿Hubo pruebas propias que pasaban y, aun así, el programa tenía un problema?
+  Cuenten un caso: qué decía el test, qué detectó la nueva prueba y qué cambio
+  hicieron. Si no ocurrió, indiquen qué comparación realizaron y qué
+  aprendieron de ella; no inventen un fallo.
+- ¿Qué diferencia observamos entre un error al importar, una prueba fallida y
+  una prueba que pasa? Usen ejemplos de su propia ejecución, cuando existan.
+- ¿Qué vamos a hacer de otra manera al escribir tests en Iteración 4?
+
+No hace falta un informe extenso ni copiar la salida completa de pytest.
+Buscamos ejemplos del trabajo del grupo y una explicación que puedan sostener.
+
+**Esta reflexión NO DEBE HACERSE CON IA. Debe estar escrita por el grupo,
+con sus propias palabras. No usen IA para redactarla, completarla ni
+reescribirla. En clase se les preguntará a los grupos sobre estas reflexiones
+y sus ejemplos; todos los integrantes deben poder explicar lo que escribieron.**
+
+Incluyan la reflexión en el circuito habitual: rama individual → integración
+→ `main`. El líder reúne las ideas de todos y el PR grupal enlaza el archivo,
+junto con una breve indicación del resultado de la verificación de Iteración 3.
+
+---
+
 ## Introducción
 
 Esta es la iteración más grande del proyecto. Hasta acá tenemos entidades bien
@@ -38,7 +104,7 @@ para las fixtures compartidas, y se mide cobertura.
 | Cierre de cuenta | no existe | baja lógica: `activa` / `inactiva` |
 | Errores | `ValueError` / `TypeError` | jerarquía propia en `errores.py` |
 | Archivos | `banco.py` + `validaciones.py` | 7 módulos |
-| Pruebas | `test.py` + un archivo propio | `test.py` + carpeta `tests/` con `conftest.py` |
+| Pruebas | un único `test.py` | `test.py` + carpeta `tests/` con `conftest.py` |
 | Verificación | `pytest` (suite en la raíz) | `pytest` + cobertura |
 
 ---
