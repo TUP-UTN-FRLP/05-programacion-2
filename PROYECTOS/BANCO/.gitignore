@@ -44,3 +44,6 @@ env/
 # --- Editores ---
 .idea/
 .vscode/
+
+# --- Material del docente: plan y plantillas de la demo con Django (no se sube) ---
+/DEMO_DJANGO/
