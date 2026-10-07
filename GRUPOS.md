@@ -1,5 +1,12 @@
 # Grupos de trabajo — Programación 2
 
+> ## ⚠️ IMPORTANTE: proyecto del grupo
+>
+> Cada grupo debe elegir un proyecto de [`PROYECTOS_SUGERIDOS.md`](PROYECTOS_SUGERIDOS.md), **entre el 2 y el 20**. El proyecto 1 (Biblioteca barrial) es el proyecto guía de la cátedra y **no se elige**:
+>
+> 1. En `PROYECTOS_SUGERIDOS.md`, anotar en la fila del proyecto elegido la **comisión y el número de grupo** (ejemplo: `TUP11 - Grupo 02`).
+> 2. **Copiar el nombre del proyecto y pegarlo en este archivo**, en la entrada del grupo, **justo debajo del título del grupo y arriba de `Integrantes:`**, con el formato `Proyecto: nombre del proyecto`.
+
 ## Reglas para la conformación de los grupos
 
 - Cada grupo debe tener **3 o 4 integrantes**.
@@ -22,6 +29,8 @@ Cada grupo deberá agregar una entrada respetando exactamente el siguiente forma
 
 ```text
 **TUP11 - Grupo 2 - usuario GitHub**
+
+Proyecto: Biblioteca barrial
 
 Integrantes:
 
