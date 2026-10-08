@@ -1,6 +1,6 @@
 # Proyectos sugeridos — Programación 2
 
-> ## ⚠️ IMPORTANTE: cómo elegir el proyecto del grupo
+> ## IMPORTANTE: cómo elegir el proyecto del grupo
 >
 > 1. Elijan **un proyecto entre los 19 restantes (del 2 al 20)**. El **proyecto 1, Biblioteca barrial, es el proyecto guía de la cátedra y no se elige**. **Cada proyecto lo puede tener un solo grupo**: gana el primero que lo anote.
 > 2. **Modifiquen este archivo:** en la fila del proyecto elegido, escriban en la columna *Comisión y grupo* el número de comisión y de grupo. Ejemplo: `TUP11 - Grupo 02`.
