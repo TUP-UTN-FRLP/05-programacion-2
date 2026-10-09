@@ -50,6 +50,8 @@ LÓPEZ María - 45678 - marialopez
 
 ### TUP11 - Grupo 1
 
+Proyecto: Gimnasio
+
 Integrantes:
 
 CANALES Ignacio - 36851 - CANALESign
