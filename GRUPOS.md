@@ -184,6 +184,8 @@ OLIVA Nicolas - 36594 - Nicolasoliva2025
 
 ### TUP13 - Grupo 3
 
+Proyecto: Escuela de idiomas
+
 Integrantes:
 
 AMANDOLA Santiago - 36830 - SanMar-089
@@ -192,7 +194,7 @@ PASSARO Leandro Hugo - 36596 - lhpassaro-UTN
 
 RODRIGUEZ Ariel Jacobo - 36606 - ArJacRod
 
-GALANT Luca - 935533 - LG-personal-account
+GALANT Luca - 37208 - LG-personal-account
 
 ### TUP13 - Grupo 4
 
