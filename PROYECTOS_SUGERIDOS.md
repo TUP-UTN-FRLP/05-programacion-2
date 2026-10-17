@@ -26,7 +26,7 @@ El proyecto 1 lo desarrolla la cátedra en paralelo, a lo largo de la cursada, c
 | 2 | Turnos de consultorio |  |
 | 3 | Gimnasio | TUP11 - Grupo 1 |
 | 4 | Veterinaria |  |
-| 5 | Alquiler de canchas |  |
+| 5 | Alquiler de canchas | TUP13 - Grupo 4 |
 | 6 | Alquiler de herramientas |  |
 | 7 | Escuela de idiomas |  |
 | 8 | Taller mecánico |  |
