@@ -62,6 +62,21 @@ CINALLI Guadalupe - 36857 - Brannagh7
 
 GREGORI Ariel - 36717 - Ari-GG1
 
+### TUP11 - Grupo 3
+
+Proyecto: Alquiler de canchas
+
+Integrantes:
+
+BRUCART Lautaro - 36847 - Lautaro Brucart - trilaux
+
+SALAS Ciro - 37044 - CiroSalas
+
+ANKUDOWICZ Azul Elena - 36832 - AzulAnku
+
+CALISTRO Dylan - 36849 - dylancalistro
+
+
 ### TUP11 - Grupo 2
 
 RUBIO Nahuel - 36608 - nahuel-sng
