@@ -24,24 +24,25 @@ El proyecto 1 lo desarrolla la cátedra en paralelo, a lo largo de la cursada, c
 | --- | --- | --- |
 | 1 | Biblioteca barrial | **PROYECTO GUÍA DE LA CÁTEDRA (no se elige)** |
 | 2 | Turnos de consultorio |  |
-| 3 | Gimnasio |  |
+| 3 | Gimnasio | TUP11 - Grupo 1 - TUP13 - Grupo 7|
 | 4 | Veterinaria |  |
-| 5 | Alquiler de canchas |  |
+| 5 | Alquiler de canchas | Tup11 - Grupo 3 |
+| 5 | Alquiler de canchas | TUP13 - Grupo 4 |
 | 6 | Alquiler de herramientas |  |
 | 7 | Escuela de idiomas |  |
 | 8 | Taller mecánico |  |
-| 9 | Peluquería |  |
+| 9 | Peluquería | TUP11 - Grupo 5 |
 | 10 | Club deportivo (cuotas) |  |
-| 11 | Hostel |  |
-| 12 | Tienda de ropa |  |
+| 11 | Hostel | TUP13 - Grupo 06 |
+| 12 | Tienda de ropa | TUP13 - Grupo 01  |
 | 13 | Cine |  |
 | 14 | Eventos y entradas |  |
-| 15 | Stock de farmacia |  |
+| 15 | Stock de farmacia | TUP13 - Grupo 9 |
 | 16 | Consorcio |  |
-| 17 | Pedidos de un restaurante |  |
+| 17 | Pedidos de un restaurante | TUP13 - Grupo 2 |
 | 18 | Préstamo de equipos del laboratorio |  |
 | 19 | Torneo de fútbol |  |
-| 20 | Mesa de ayuda |  |
+| 20 | Mesa de ayuda | TUP11 - Grupo 2 |
 
 ---
 

@@ -50,6 +50,8 @@ LÓPEZ María - 45678 - marialopez
 
 ### TUP11 - Grupo 1
 
+Proyecto: Gimnasio
+
 Integrantes:
 
 CANALES Ignacio - 36851 - CANALESign
@@ -60,7 +62,26 @@ CINALLI Guadalupe - 36857 - Brannagh7
 
 GREGORI Ariel - 36717 - Ari-GG1
 
+### TUP11 - Grupo 3
+
+Proyecto: Alquiler de canchas
+
+Integrantes:
+
+BRUCART Lautaro - 36847 - Lautaro Brucart - trilaux
+
+SALAS Ciro - 37044 - CiroSalas
+
+ANKUDOWICZ Azul Elena - 36832 - AzulAnku
+
+CALISTRO Dylan - 36849 - dylancalistro
+
+
 ### TUP11 - Grupo 2
+
+Proyecto: Mesa de ayuda
+
+Integrantes:
 
 RUBIO Nahuel - 36608 - nahuel-sng
 
@@ -83,6 +104,8 @@ ANKUDOWICZ Azul Elena - 36832 - AzulAnku
 CALISTRO Dylan - 36849 - dylancalistro
 
 ### TUP11 - Grupo 4
+
+Proyecto: Alquiler de canchas
 
 Integrantes:
 
@@ -170,6 +193,8 @@ SUAREZ Juan Valentin - 36613 - JuanvaSS
 
 ### TUP13 - Grupo 2
 
+## PROYECTO - Pedidos de un restaurante
+
 Integrantes:
 
 FILARDO Hilda Aldana - filardohilda
@@ -182,6 +207,8 @@ OLIVA Nicolas - 36594 - Nicolasoliva2025
 
 ### TUP13 - Grupo 3
 
+Proyecto: Escuela de idiomas
+
 Integrantes:
 
 AMANDOLA Santiago - 36830 - SanMar-089
@@ -190,7 +217,7 @@ PASSARO Leandro Hugo - 36596 - lhpassaro-UTN
 
 RODRIGUEZ Ariel Jacobo - 36606 - ArJacRod
 
-GALANT Luca - 935533 - LG-personal-account
+GALANT Luca - 37208 - LG-personal-account
 
 ### TUP13 - Grupo 4
 
@@ -206,6 +233,8 @@ TOVIO Joaquin - 36615 - joacodust7
 
 ### TUP13 - Grupo 5
 
+Proyecto: Veterinaria 
+
 Integrantes:
 
 CASTRO Sanchez Liliana - 37099 - sanchezlylyana
@@ -217,6 +246,8 @@ MONLEZUN Neilen - 36734 - NeilenC
 ZOPPOLI Luciano - 37105 - luchozoppo
 
 ### TUP13 - Grupo 6
+
+Proyecto: Hostel
 
 Integrantes:
 
@@ -239,6 +270,8 @@ VEIGA Tobias - 36618 - TobiasVeiga00
 MASSA Laureano - 37101 - Laureano-GitHub
 
 ### TUP13 - Grupo 8
+
+Proyecto: Taller Mecanico
 
 Integrantes:
 
