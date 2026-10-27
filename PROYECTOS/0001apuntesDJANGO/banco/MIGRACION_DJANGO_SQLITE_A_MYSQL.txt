@@ -1,0 +1,322 @@
+=====================================================================
+ MIGRACION DEL PROYECTO "BANCO" (DJANGO 6.1) DE SQLITE A MYSQL
+ Carpeta del proyecto: C:\Users\cuale\Desktop\proyectos\banco
+ manage.py esta en:    C:\Users\cuale\Desktop\proyectos\banco\banco
+=====================================================================
+
+ESTADO ACTUAL (relevado del proyecto)
+  - Django 6.1.2, entorno virtual en banco\.venv
+  - Apps propias: cuentas, titulares, geografica
+  - Base: banco\db.sqlite3 (casi vacia)
+      auth_user: 1 | geografica_provincia: 1 | admin_log: 1 | session: 1
+      resto de las tablas de tus apps: 0 filas
+  - No hay requirements.txt ni repositorio git en esta carpeta.
+  - Con Django NO se usa el script migrar_datos.py ni sqlite3 a mano:
+    Django crea las tablas solo (migrate) y los datos se pasan con
+    dumpdata / loaddata.
+
+Todos los comandos son para PowerShell en Windows.
+
+
+---------------------------------------------------------------------
+PASO 0. BACKUP
+---------------------------------------------------------------------
+
+     cd C:\Users\cuale\Desktop\proyectos
+     Copy-Item -Recurse banco banco_backup_sqlite
+
+(Si despues de la migracion algo sale mal, volves a este backup.)
+
+
+---------------------------------------------------------------------
+PASO 1. EXPORTAR LOS DATOS DE SQLITE  (ANTES de tocar settings.py)
+---------------------------------------------------------------------
+
+     cd C:\Users\cuale\Desktop\proyectos\banco
+     .\.venv\Scripts\Activate.ps1
+     cd banco
+
+Si PowerShell bloquea el script de activacion:
+     Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+     (y volves a correr el Activate.ps1)
+
+Exportar:
+
+     python manage.py dumpdata --natural-foreign --natural-primary `
+       --exclude contenttypes --exclude auth.permission `
+       --exclude admin.logentry --exclude sessions `
+       --indent 2 -o datos.json
+
+IMPORTANTE: usa -o datos.json y NO "> datos.json". En PowerShell el
+operador > guarda en UTF-16 y despues loaddata falla con errores de
+codificacion.
+
+Verificar que el archivo tenga contenido:
+
+     Get-Content datos.json -TotalCount 40
+
+
+---------------------------------------------------------------------
+PASO 2. INSTALAR MYSQL
+---------------------------------------------------------------------
+
+Opcion A (Windows): "MySQL Installer"
+  https://dev.mysql.com/downloads/installer/
+  - Elegir "Server only" (o "Developer Default" si queres Workbench).
+  - Version MySQL 8.x (8.4 LTS es una buena eleccion). Si despues
+    "migrate" se queja de la version, revisar en la documentacion de
+    Django 6.1 las versiones de MySQL/MariaDB soportadas.
+  - Anotar la clave de root. Puerto 3306. Servicio de Windows activo.
+
+Opcion B: Docker
+     docker run --name mysql-banco -e MYSQL_ROOT_PASSWORD=<CLAVE_ROOT> `
+       -p 3306:3306 -d mysql:8.4
+
+Opcion C: XAMPP (trae MariaDB; funciona con Django pero no es MySQL).
+
+Verificar:
+     mysql --version
+     mysql -u root -p
+
+(Si "mysql" no se reconoce: agregar al PATH
+ C:\Program Files\MySQL\MySQL Server 8.x\bin )
+
+
+---------------------------------------------------------------------
+PASO 3. CREAR LA BASE Y UN USUARIO
+---------------------------------------------------------------------
+
+En la consola de MySQL (mysql -u root -p):
+
+     CREATE DATABASE banco
+       CHARACTER SET utf8mb4
+       COLLATE utf8mb4_unicode_ci;
+
+     CREATE USER 'banco_user'@'localhost' IDENTIFIED BY '<CLAVE_NUEVA>';
+     GRANT ALL PRIVILEGES ON banco.* TO 'banco_user'@'localhost';
+     FLUSH PRIVILEGES;
+     EXIT;
+
+Probar el usuario nuevo:
+     mysql -u banco_user -p banco
+
+Tiene que ser ALL PRIVILEGES sobre banco.* porque "manage.py test"
+tambien crea una base temporal (test_banco). Si no queres darle ese
+permiso, agrega tambien:
+     GRANT ALL PRIVILEGES ON `test\_banco`.* TO 'banco_user'@'localhost';
+
+
+---------------------------------------------------------------------
+PASO 4. INSTALAR EL DRIVER DE MYSQL EN EL VENV
+---------------------------------------------------------------------
+
+Con el venv activado:
+
+     python -m pip install mysqlclient
+
+Si falla la instalacion (suele pasar en Windows si no hay wheel para tu
+version de Python), usa la alternativa PyMySQL:
+
+     python -m pip install pymysql
+
+y agrega estas 2 lineas ARRIBA DE TODO en banco\banco\__init__.py:
+
+     import pymysql
+     pymysql.install_as_MySQLdb()
+
+(Con PyMySQL puede que Django proteste por la version de mysqlclient;
+mysqlclient es la opcion recomendada.)
+
+
+---------------------------------------------------------------------
+PASO 5. CAMBIAR settings.py
+---------------------------------------------------------------------
+
+Archivo: banco\banco\banco\settings.py
+
+5.1  Agregar "import os" arriba, junto al import de Path:
+
+     import os
+     from pathlib import Path
+
+5.2  Reemplazar el bloque DATABASES por:
+
+     DATABASES = {
+         'default': {
+             'ENGINE': 'django.db.backends.mysql',
+             'NAME': os.environ.get('DB_NAME', 'banco'),
+             'USER': os.environ.get('DB_USER', 'banco_user'),
+             'PASSWORD': os.environ.get('DB_PASSWORD', ''),
+             'HOST': os.environ.get('DB_HOST', '127.0.0.1'),
+             'PORT': os.environ.get('DB_PORT', '3306'),
+             'OPTIONS': {
+                 'charset': 'utf8mb4',
+             },
+         }
+     }
+
+5.3  Definir la clave en la terminal (solo vale para esa ventana):
+
+     $env:DB_PASSWORD = "<CLAVE_NUEVA>"
+
+Para dejarla fija en tu usuario de Windows:
+
+     setx DB_PASSWORD "<CLAVE_NUEVA>"
+     (cerrar y abrir la terminal / VS Code despues)
+
+No pongas la clave escrita en settings.py si despues vas a subir el
+proyecto a GitHub.
+
+5.4  (Opcional, recomendado) Lo mismo para SECRET_KEY, que ahora esta
+     escrita en el archivo:
+
+     SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-dev-only')
+
+
+---------------------------------------------------------------------
+PASO 6. CREAR LAS TABLAS EN MYSQL
+---------------------------------------------------------------------
+
+     python manage.py check
+     python manage.py migrate
+
+Tiene que aplicar las migraciones de admin, auth, contenttypes,
+sessions, cuentas, titulares y geografica sin errores.
+
+Mirar las tablas creadas:
+     mysql -u banco_user -p banco -e "SHOW TABLES;"
+
+
+---------------------------------------------------------------------
+PASO 7. CARGAR LOS DATOS
+---------------------------------------------------------------------
+
+     python manage.py loaddata datos.json
+
+Resultado esperado: "Installed N object(s) from 1 fixture(s)".
+
+Si da error de clave duplicada con auth.user o con otra tabla, es porque
+migrate ya creo algun dato. Vaciar y repetir:
+
+     python manage.py flush --no-input
+     python manage.py loaddata datos.json
+
+(flush borra todos los datos de la base MySQL, no toca el sqlite.)
+
+Alternativa si no queres complicarte, como tenes solo 1 usuario y 1
+provincia: crear el superusuario de nuevo y cargar la provincia a mano:
+
+     python manage.py createsuperuser
+
+
+---------------------------------------------------------------------
+PASO 8. VERIFICAR
+---------------------------------------------------------------------
+
+8.1  Contar objetos desde el shell de Django:
+
+     python manage.py shell
+
+     from django.contrib.auth import get_user_model
+     from geografica.models import Provincia
+     print(get_user_model().objects.count())   # esperado: 1
+     print(Provincia.objects.count())          # esperado: 1
+     exit()
+
+8.2  Levantar el servidor y entrar al admin:
+
+     python manage.py runserver
+     http://127.0.0.1:8000/admin/
+
+     Iniciar sesion con tu superusuario y revisar que se vea la provincia.
+
+8.3  Confirmar que Django esta usando MySQL y no SQLite:
+
+     python manage.py dbshell
+     (tiene que abrir el cliente "mysql", no "sqlite3")
+
+8.4  Tests:
+
+     python manage.py test
+
+
+---------------------------------------------------------------------
+PASO 9. CIERRE
+---------------------------------------------------------------------
+
+9.1  Guardar las dependencias (hoy no hay requirements.txt):
+
+     python -m pip freeze > requirements.txt
+
+     Ojo: en PowerShell eso puede guardar en UTF-16. Si pip falla
+     despues al leerlo, usa:
+     python -m pip freeze | Out-File -Encoding utf8 requirements.txt
+
+9.2  NO borres db.sqlite3 todavia. Dejalo unos dias como respaldo.
+
+9.3  Si vas a usar git, crear un .gitignore con:
+
+     .venv/
+     __pycache__/
+     db.sqlite3
+     datos.json
+     .env
+
+9.4  Anotar en un README: MySQL 8.x, como crear la base y el usuario,
+     las variables de entorno (DB_NAME, DB_USER, DB_PASSWORD, DB_HOST,
+     DB_PORT) y el comando "python manage.py migrate".
+
+
+---------------------------------------------------------------------
+PROBLEMAS COMUNES
+---------------------------------------------------------------------
+
+- "django.core.exceptions.ImproperlyConfigured: Error loading
+   MySQLdb module"
+    No esta instalado el driver en el venv activo. Revisar que el venv
+    este activado y repetir el Paso 4.
+
+- "Access denied for user 'banco_user'@'localhost'"
+    Clave mal (revisar $env:DB_PASSWORD) o falto el GRANT del Paso 3.
+
+- "Can't connect to MySQL server on '127.0.0.1'"
+    El servicio no esta corriendo. services.msc -> iniciar "MySQL80"
+    (o similar). Con Docker: docker start mysql-banco.
+
+- "Unknown database 'banco'"
+    No se creo la base. Repetir el Paso 3.
+
+- "UnicodeDecodeError" al hacer loaddata
+    datos.json quedo en UTF-16 por haber usado ">". Repetir el Paso 1
+    con -o datos.json.
+
+- "IntegrityError ... Duplicate entry" en loaddata
+    migrate ya creo datos (ej. permisos). Usar flush (Paso 7) y repetir,
+    o verificar que el dumpdata haya excluido contenttypes y
+    auth.permission como en el Paso 1.
+
+- Error de autenticacion "caching_sha2_password"
+    Actualizar mysqlclient:  python -m pip install -U mysqlclient
+
+- "manage.py test" falla con "Access denied ... test_banco"
+    Dar permisos sobre la base de test (ultima nota del Paso 3).
+
+
+---------------------------------------------------------------------
+NOTAS SOBRE TUS MODELOS (no bloquean la migracion)
+---------------------------------------------------------------------
+
+- cuentas.Movimiento solo tiene el campo "cuenta": todavia le faltan
+  monto, tipo, fecha, etc. Cuando los agregues, usa DecimalField para
+  el monto (nunca FloatField).
+- geografica.Localidad tiene el campo "localidad" apuntando a
+  Departamento: probablemente quisiste llamarlo "departamento". Si lo
+  renombras, hace "makemigrations" y "migrate" despues de la migracion
+  a MySQL, no antes, para no mezclar cambios.
+- Los CharField unique (dni, cuit, codigo_georef, numero) funcionan
+  bien con utf8mb4: el limite de indice de MySQL no se alcanza con esos
+  largos.
+
+=====================================================================
+FIN
+=====================================================================
