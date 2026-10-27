@@ -37,7 +37,7 @@ El proyecto 1 lo desarrolla la cátedra en paralelo, a lo largo de la cursada, c
 | 12 | Tienda de ropa | TUP13 - Grupo 01  |
 | 13 | Cine |  |
 | 14 | Eventos y entradas |  |
-| 15 | Stock de farmacia |  |
+| 15 | Stock de farmacia | TUP13 - Grupo 9 |
 | 16 | Consorcio |  |
 | 17 | Pedidos de un restaurante | TUP13 - Grupo 2 |
 | 18 | Préstamo de equipos del laboratorio |  |
