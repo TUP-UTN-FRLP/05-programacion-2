@@ -283,6 +283,8 @@ LENCINA Mauro Elìas - 37100 - maurolencina
 
 ### TUP13 - Grupo 9
 
+Proyecto: Stock de farmacia
+
 Integrantes:
 
 BRIME Milagros - 36843 - MiliBrime
