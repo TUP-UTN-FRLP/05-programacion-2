@@ -1,0 +1,148 @@
+/* ==========================================================
+   Alquiler de Canchas — hoja de estilos principal
+   ========================================================== */
+
+/* Los colores del sitio, en un solo lugar.
+   Cambiá un valor acá y cambia en toda la página. */
+:root {
+    --verde:        #1b7f5a;
+    --verde-oscuro: #14543d;
+    --verde-claro:  #e8f5ef;
+    --texto:        #2c3330;
+    --gris:         #6b7773;
+    --borde:        #dde5e1;
+    --fondo:        #f7f9f8;
+    --blanco:       #ffffff;
+
+    /* Las dos tipografias del sitio */
+    --fuente-titulos: "Archivo", "Segoe UI", system-ui, sans-serif;
+    --fuente-texto:   "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: var(--fuente-texto);
+    line-height: 1.65;
+    color: var(--texto);
+    background-color: var(--fondo);
+}
+
+/* ---------- Encabezado y navegación ---------- */
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    background-color: var(--verde-oscuro);
+}
+
+/* El nombre del sitio: el link suelto del header */
+header > a {
+    color: var(--blanco);
+    font-family: var(--fuente-titulos);
+    font-size: 1.3rem;
+    font-weight: 800;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+nav a {
+    padding: 0.45rem 0.9rem;
+    border-radius: 6px;
+    color: #cfe6da;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background-color 0.15s, color 0.15s;
+}
+
+nav a:hover {
+    background-color: var(--verde);
+    color: var(--blanco);
+}
+
+/* ---------- Contenido ---------- */
+
+main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+}
+
+h1 {
+    margin: 0 0 0.6rem;
+    font-family: var(--fuente-titulos);
+    font-size: 2.9rem;
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    color: var(--verde-oscuro);
+}
+
+h2 {
+    margin: 0 0 0.75rem;
+    font-family: var(--fuente-titulos);
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--verde-oscuro);
+}
+
+/* Las secciones se ven como tarjetas */
+section {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: 10px;
+}
+
+section ul {
+    margin: 0;
+    padding-left: 1.2rem;
+}
+
+section li {
+    margin-bottom: 0.4rem;
+}
+
+/* ---------- Pie de página ---------- */
+
+footer {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    border-top: 1px solid var(--borde);
+    text-align: center;
+    color: var(--gris);
+    font-size: 0.875rem;
+}
+
+/* ---------- Celulares ---------- */
+
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem 1.25rem;
+    }
+
+    main {
+        padding: 1.75rem 1.25rem;
+    }
+
+    h1 {
+        font-size: 2.1rem;
+    }
+}
