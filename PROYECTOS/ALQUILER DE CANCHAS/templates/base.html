@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=Inter:wght@400;500&display=swap">
+    <title>{% block titulo %}Alquiler de Canchas{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+</head>
+<body>
+
+    <header>
+        <a href="{% url 'inicio' %}">Alquiler de Canchas</a>
+
+        <nav>
+            <a href="{% url 'inicio' %}">Inicio</a>
+            <a href="#">Canchas</a>
+            <a href="#">Reservas</a>
+            <a href="#">Clientes</a>
+            <a href="/admin/">Administración</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block contenido %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>Proyecto final &mdash; Programación II &mdash; TUP UTN FRLP</p>
+    </footer>
+
+</body>
+</html>
