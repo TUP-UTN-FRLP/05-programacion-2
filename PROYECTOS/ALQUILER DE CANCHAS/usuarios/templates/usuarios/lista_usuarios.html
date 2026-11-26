@@ -30,14 +30,14 @@
                 <tbody>
                     {% for usuario in usuarios %}
                     <tr>
-                        <td>{{ usuario.apellido }}, {{ usuario.nombre }}</td>
-                        <td>{{ usuario.dni }}</td>
-                        <td>{{ usuario.telefono }}</td>
-                        <td>{{ usuario.email }}</td>
-                        <td>{{ usuario.fecha_nacimiento|date:'d/m/Y' }}</td>
-                        <td>{% if usuario.is_active %}<span class="estado activo">Activo</span>{% else %}<span class="estado inactivo">Inactivo</span>{% endif %}</td>
-                        <td>{% for grupo in usuario.groups.all %}{{ grupo.name }}{% empty %}Sin rol{% endfor %}</td>
-                        <td class="acciones">
+                        <td data-etiqueta="Usuario">{{ usuario.apellido }}, {{ usuario.nombre }}</td>
+                        <td data-etiqueta="DNI">{{ usuario.dni }}</td>
+                        <td data-etiqueta="Teléfono">{{ usuario.telefono }}</td>
+                        <td data-etiqueta="Email">{{ usuario.email }}</td>
+                        <td data-etiqueta="Fecha de nacimiento">{{ usuario.fecha_nacimiento|date:'d/m/Y' }}</td>
+                        <td data-etiqueta="Estado">{% if usuario.is_active %}<span class="estado activo">Activo</span>{% else %}<span class="estado inactivo">Inactivo</span>{% endif %}</td>
+                        <td data-etiqueta="Rol">{% for grupo in usuario.groups.all %}{{ grupo.name }}{% empty %}Sin rol{% endfor %}</td>
+                        <td class="acciones" data-etiqueta="Acciones">
                             <a href="{% url 'usuarios:editar' usuario.id %}">Editar</a>
                             <a class="peligro" href="{% url 'usuarios:eliminar' usuario.id %}">Eliminar</a>
                         </td>

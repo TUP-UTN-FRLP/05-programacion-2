@@ -186,20 +186,131 @@ footer {
     font-size: 0.875rem;
 }
 
-/* ---------- Celulares ---------- */
+/* ---------- Pantallas medianas y celulares ---------- */
+
+@media (max-width: 768px) {
+    header {
+        padding: 1rem 1.5rem;
+    }
+
+    main {
+        padding: 2rem 1.5rem;
+    }
+
+    .pagina-cabecera {
+        align-items: flex-start;
+    }
+}
 
 @media (max-width: 600px) {
     header {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
+        gap: 0.75rem;
         padding: 1rem 1.25rem;
     }
 
+    nav {
+        width: 100%;
+    }
+
+    nav a {
+        flex: 1 1 calc(50% - 0.4rem);
+        padding: 0.55rem 0.4rem;
+        text-align: center;
+    }
+
     main {
-        padding: 1.75rem 1.25rem;
+        padding: 1.5rem 1rem;
     }
 
     h1 {
         font-size: 2.1rem;
+    }
+
+    section {
+        margin-top: 1.5rem;
+        padding: 1.1rem;
+    }
+
+    .pagina-cabecera {
+        align-items: stretch;
+    }
+
+    .pagina-cabecera .boton,
+    .enlace-volver {
+        width: 100%;
+        text-align: center;
+    }
+
+    .formulario-acciones {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .formulario-acciones .boton,
+    .formulario-acciones a {
+        width: 100%;
+        text-align: center;
+    }
+
+    .tabla-contenedor {
+        margin-top: 0;
+        overflow: visible;
+    }
+
+    .tabla-contenedor table,
+    .tabla-contenedor tbody,
+    .tabla-contenedor tr,
+    .tabla-contenedor td {
+        display: block;
+        width: 100%;
+    }
+
+    .tabla-contenedor thead {
+        display: none;
+    }
+
+    .tabla-contenedor tr {
+        margin-top: 1rem;
+        padding: 0.5rem 0.75rem;
+        border: 1px solid var(--borde);
+        border-radius: 8px;
+    }
+
+    .tabla-contenedor td {
+        display: grid;
+        grid-template-columns: minmax(7.5rem, 45%) 1fr;
+        gap: 0.5rem;
+        padding: 0.5rem 0;
+        white-space: normal;
+        text-align: right;
+    }
+
+    .tabla-contenedor td::before {
+        content: attr(data-etiqueta);
+        color: var(--verde-oscuro);
+        font-weight: 600;
+        text-align: left;
+    }
+
+    .tabla-contenedor td.acciones {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    .tabla-contenedor td.acciones::before {
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 380px) {
+    h1 {
+        font-size: 1.85rem;
+    }
+
+    nav a {
+        flex-basis: 100%;
     }
 }
