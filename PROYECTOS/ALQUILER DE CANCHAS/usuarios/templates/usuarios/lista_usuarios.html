@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Usuarios | Alquiler de Canchas{% endblock %}
+
+{% block contenido %}
+<div class="pagina-cabecera">
+    <div>
+        <h1>Usuarios</h1>
+        <p>Administrá las personas que realizan reservas.</p>
+    </div>
+    <a class="boton" href="{% url 'usuarios:crear' %}">+ Nuevo usuario</a>
+</div>
+
+<section>
+    {% if usuarios %}
+        <div class="tabla-contenedor">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Usuario</th>
+                        <th>DNI</th>
+                        <th>Teléfono</th>
+                        <th>Email</th>
+                        <th>Fecha de nacimiento</th>
+                        <th>Estado</th>
+                        <th>Rol</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for usuario in usuarios %}
+                    <tr>
+                        <td>{{ usuario.apellido }}, {{ usuario.nombre }}</td>
+                        <td>{{ usuario.dni }}</td>
+                        <td>{{ usuario.telefono }}</td>
+                        <td>{{ usuario.email }}</td>
+                        <td>{{ usuario.fecha_nacimiento|date:'d/m/Y' }}</td>
+                        <td>{% if usuario.is_active %}<span class="estado activo">Activo</span>{% else %}<span class="estado inactivo">Inactivo</span>{% endif %}</td>
+                        <td>{% for grupo in usuario.groups.all %}{{ grupo.name }}{% empty %}Sin rol{% endfor %}</td>
+                        <td class="acciones">
+                            <a href="{% url 'usuarios:editar' usuario.id %}">Editar</a>
+                            <a class="peligro" href="{% url 'usuarios:eliminar' usuario.id %}">Eliminar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p class="estado-vacio">Todavía no hay usuarios registrados.</p>
+    {% endif %}
+</section>
+{% endblock %}

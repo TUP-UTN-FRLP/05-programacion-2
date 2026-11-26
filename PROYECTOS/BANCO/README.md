@@ -163,38 +163,112 @@ unilateralmente qué solución utilizar.
 
 ## Iteraciones
 
-El proyecto se desarrollará durante cinco semanas.
+El proyecto se desarrolla durante cinco semanas. Cada iteración incorpora
+solamente los conceptos trabajados hasta ese momento en la materia y parte de la
+versión integrada de la semana anterior.
 
 ### Iteración 1 — Clases y objetos
 
 [Ver consigna de la Iteración 1](ITERACION_01.md)
 
+Modela una **cuenta bancaria básica** (`Cuenta`) que se pueda crear, depositar,
+extraer y mostrar. La versión es deliberadamente incompleta: no hay validaciones
+y se prueban también las situaciones incorrectas (depósito negativo, extracción
+sin fondos, datos vacíos, modificación directa del saldo).
+
 Conceptos principales:
 
-- clases;
-- objetos;
-- atributos;
-- métodos;
-- `self`;
-- `__init__`;
-- `__str__`;
-- parámetros y valores por defecto.
+- clases, objetos, atributos y métodos;
+- `self`, `__init__`, `__str__`;
+- parámetros y parámetros con valor por defecto;
+- el bloque `if __name__ == "__main__":` como escenario de prueba.
 
-### Iteración 2
+### Iteración 2 — Encapsulamiento y validación
 
-La consigna será publicada al comenzar la segunda iteración.
+[Ver consigna de la Iteración 2](ITERACION_02.md)
 
-### Iteración 3
+Aparece la clase `Persona` y la `Cuenta` **tiene un** titular `Persona`
+(composición). Las entidades ya **no pueden nacer con un estado inválido**: los
+atributos se encapsulan, se exponen con `@property` de solo lectura y los datos
+incorrectos cortan con una excepción.
 
-La consigna será publicada al comenzar la tercera iteración.
+Conceptos principales:
 
-### Iteración 4
+- encapsulamiento con doble guion bajo y *name mangling*;
+- `@property` sin setters (lectura controlada);
+- composición entre objetos;
+- excepciones estándar (`ValueError`, `TypeError`);
+- módulo aparte `validaciones.py` con funciones reutilizables;
+- `lambda` para diferir la ejecución de cada caso inválido;
+- `.gitignore`.
 
-La consigna será publicada al comenzar la cuarta iteración.
+### Iteración 3 — Herencia y polimorfismo
 
-### Iteración 5
+[Ver consigna de la Iteración 3](ITERACION_03.md) ·
+[Contrato TDD](TDD_ITERACION_03.md) ·
+[Guía de tests](GUIA_TESTS_ITERACION_03.md)
 
-La consigna será publicada al comenzar la quinta iteración.
+Las clases genéricas se parten en **tipos especializados**: `Persona` base con
+`PersonaFisica` y `PersonaJuridica`; `Cuenta` base con `CuentaAhorro` y
+`CuentaCorriente`. Cada subclase agrega solo lo que tiene de distinto, sin
+duplicar código.
+
+Conceptos principales:
+
+- herencia simple y `super()` (en el constructor y en métodos sobrescritos);
+- sobrescritura de métodos y polimorfismo (`resumen()`, `identificacion`);
+- atributos de clase vs. de instancia;
+- `isinstance()` / `issubclass()`;
+- validaciones nuevas: CUIT con dígito verificador, edad, tasa, límite;
+- **`pytest` se empieza a ejecutar**: el `test.py` de la cátedra se corre y debe
+  pasar, y cada estudiante escribe sus propios tests.
+
+### Iteración 4 — Sistema, movimientos y excepciones propias
+
+[Ver consigna de la Iteración 4](ITERACION_04.md) ·
+[Contrato TDD](TDD_ITERACION_04.md) ·
+[Guía de tests](GUIA_TESTS_ITERACION_04.md)
+
+Es la iteración más grande. Aparecen la clase `Movimiento` (historial con fecha,
+tipo, monto y saldo posterior), la clase `Banco` (ABM de cuentas y generación de
+**CBU**), la transferencia **atómica** entre cuentas, la **baja lógica** y una
+jerarquía de errores propia. El proyecto se reorganiza en varios módulos.
+
+Conceptos principales:
+
+- excepciones personalizadas y jerarquías de excepciones;
+- herencia múltiple aplicada a los errores (`ValueError` por compatibilidad);
+- `raise ... from ...`, `try` / `except` / `else` / `finally`;
+- colecciones de objetos (`list` para el historial, `dict` como índice);
+- diccionario como despachador de operaciones;
+- `@classmethod` / `@staticmethod`, `__len__` / `__contains__` / `__iter__`;
+- `datetime` con zona horaria, dígitos verificadores del CBU;
+- separación entre lógica de negocio e interfaz (`main.py` con el menú);
+- `pytest` con carpeta `tests/`, `conftest.py` y cobertura.
+
+### Iteración 5 — Abstracción y principios de diseño (final)
+
+[Ver consigna de la Iteración 5](ITERACION_05.md) ·
+[Contrato TDD](TDD_ITERACION_05.md) ·
+[Guía de tests](GUIA_TESTS_ITERACION_05.md)
+
+No agrega funcionalidad importante: **mejora el diseño**. `Cuenta` y `Persona`
+pasan a ser abstractas, `extraer()` se escribe una sola vez como método
+plantilla, aparece `CuentaSueldo` **sin tocar el código existente** (OCP),
+`Movimiento` pasa a `@dataclass(frozen=True)` y `Banco` delega el almacenamiento
+en un `RepositorioCuentas` inyectado (DIP). Deja el sistema listo para el
+próximo proyecto integrador con Django.
+
+Conceptos principales:
+
+- clases abstractas con `abc.ABC` y `@abstractmethod`, property abstracta;
+- método plantilla;
+- `@dataclass`, `frozen=True`, `field(default_factory=...)`, `__post_init__`;
+- type hints en toda la jerarquía (`Optional`, `TYPE_CHECKING`);
+- inyección de dependencias por constructor;
+- principios **OCP**, **LSP** y **DIP**;
+- `assert` como verificación ejecutable de invariantes de diseño;
+- `README.md` del grupo para un lector externo.
 
 ---
 

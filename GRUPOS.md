@@ -1,5 +1,12 @@
 # Grupos de trabajo — Programación 2
 
+> ## ⚠️ IMPORTANTE: proyecto del grupo
+>
+> Cada grupo debe elegir un proyecto de [`PROYECTOS_SUGERIDOS.md`](PROYECTOS_SUGERIDOS.md), **entre el 2 y el 20**. El proyecto 1 (Biblioteca barrial) es el proyecto guía de la cátedra y **no se elige**:
+>
+> 1. En `PROYECTOS_SUGERIDOS.md`, anotar en la fila del proyecto elegido la **comisión y el número de grupo** (ejemplo: `TUP11 - Grupo 02`).
+> 2. **Copiar el nombre del proyecto y pegarlo en este archivo**, en la entrada del grupo, **justo debajo del título del grupo y arriba de `Integrantes:`**, con el formato `Proyecto: nombre del proyecto`.
+
 ## Reglas para la conformación de los grupos
 
 - Cada grupo debe tener **3 o 4 integrantes**.
@@ -10,7 +17,7 @@
   registrados en otro grupo.
 - No modificar ni eliminar la información correspondiente a otros grupos.
 - La numeración de los grupos debe continuar la existente en cada comisión.
-La conformación registrada en este documento será utilizada posteriormente por la cátedra para crear los equipos y repositorios privados de trabajo de cada grupo.
+La conformación registrada en este documento será utilizada posteriormente por la cátedra para crear los equipos y repositorios privados de trabajo de cada equipo.
 
 Una vez conformado el grupo, sus integrantes deberán registrarlo en este documento, dentro de la comisión correspondiente.
 
@@ -21,7 +28,9 @@ Una vez conformado el grupo, sus integrantes deberán registrarlo en este docume
 Cada grupo deberá agregar una entrada respetando exactamente el siguiente formato en un ejemplo:
 
 ```text
-**TUP11 - Grupo 1 - usuario GitHub**
+**TUP11 - Grupo 2 - usuario GitHub**
+
+Proyecto: Biblioteca barrial
 
 Integrantes:
 
@@ -31,40 +40,267 @@ RODRÍGUEZ Pedro - 34567 - pedrosystems
 LÓPEZ María - 45678 - marialopez
 ```
 
-> Los nombres, legajos y usurios del ejemplo son ficticios.
+> Los nombres, legajos y usuarios del ejemplo son ficticios.
 
 ---
 
 ## Comisión TUP11
 
-### Grupos TUP11
-
 <!-- Agregar los grupos de TUP11 debajo de esta línea -->
+
 ### TUP11 - Grupo 1
+
+Proyecto: Gimnasio
 
 Integrantes:
 
-CANALES Ignacio - 36851 - LeFlip
+CANALES Ignacio - 36851 - CANALESign
 
 BARRIENTOS Raquel - 36840 - Barrientos2001
 
+CINALLI Guadalupe - 36857 - Brannagh7
+
 GREGORI Ariel - 36717 - Ari-GG1
+
+### TUP11 - Grupo 3
+
+Proyecto: Alquiler de canchas
+
+Integrantes:
+
+BRUCART Lautaro - 36847 - Lautaro Brucart - trilaux
+
+SALAS Ciro - 37044 - CiroSalas
+
+ANKUDOWICZ Azul Elena - 36832 - AzulAnku
+
+CALISTRO Dylan - 36849 - dylancalistro
+
+
+### TUP11 - Grupo 2
+
+Proyecto: Mesa de ayuda
+
+Integrantes:
+
+RUBIO Nahuel - 36608 - nahuel-sng
+
+COURTIS Pablo - 36862 - kourtis23
+
+ZUALET Rodolfo - 36622 - rzualet
+
+REYNA Sofia - 36600 - sofiabelenreyna-a11y
+
+### TUP11 - Grupo 3
+
+Integrantes:
+
+BRUCART Lautaro - 36847 - Lautaro Brucart - trilaux
+
+SALAS Ciro - 37044 - CiroSalas
+
+ANKUDOWICZ Azul Elena - 36832 - AzulAnku
+
+CALISTRO Dylan - 36849 - dylancalistro
+
+### TUP11 - Grupo 4
+
+Proyecto: Alquiler de canchas
+
+Integrantes:
+
+BALISTA Matias - 36838 - BalistaMatias
+
+VILLANUEVA Gonzalo - 36621 - gonzalituss7
+
+CARRION Nehuen - 36852 - newen07
+
+ASCACIBAR Franco - 36835 - FranascaUTN
+
+### TUP11 - Grupo 5
+
+Integrantes:
+
+BARBER Bruno Lautaro - 36839 - Dextro25
+
+CARRIZO Juan Ignacio - 36853 - JuanIgnacioCarrizo
+
+IRIBARREN Bautista - 37115 - Bautista707
+
+GIOVANNINI Francisco - 37117 - flipante
+
+### TUP11 - Grupo 6
+
+Integrantes:
+
+SENESSI Lucas - 36610 - ashdiesalone
+
+KRMPOTIC Matías - 36724 - MatiasKrmpotic
+
+PINTO Tomás - 37102 - Tomipinto-716
+
+### TUP11 - Grupo 7
+
+Integrantes:
+
+RINGUELET Emilia - 36601 - emiliaringuelet
+
+FERNANDEZ BOLLINI Tiago - 36709 - tiagofb
+
+SOTO Elio Agustin - 36612 - soto-agustin
+
+### TUP11 - Grupo 8
+
+Integrantes:
+
+BAVARO Mateo Julian - 36842 - MateoBávaro
+
+SALEM Rodríguez Ignacio - 36605 - NachoRSalem
+
+IZAURRALDE Bautista - 37021 - izaurraldebautista-svg
+
+UGARTE Matias - 935556 - MatiasUgarte
+
+### TUP11 - Grupo 9  
+
+Integrantes:
+
+DE LA TORRE Magdalena Regina - 36863 - Magdlt
+
+SANDOVAL Daiana Jimena - 36185 - DaianaSNDVL
+
+MARTÍNEZ PANIAGUA Milagros - 36733 - miliMartinezz  
+
+VISCUBI Danilo Luis - 37104 - daniloviscubi
 
 ---
 
 ## Comisión TUP13
 
 <!-- Agregar los grupos de TUP13 debajo de esta línea -->
+
 ### TUP13 - Grupo 1
 
 Integrantes:
 
-COELLO Palacios Helen - 36858
+COELLO Palacios Helen - 36858 - helc25
 
-GONZALO Cayssials Nahuel - 36855
+GONZALO Cayssials Nahuel - 36855 - Gonzadeveloper
 
-PATRICIO Pereyra Damian - 935586
+PATRICIO Pereyra Damian - 935586 - DamianPereyra-creator
 
 SUAREZ Juan Valentin - 36613 - JuanvaSS
 
----
+### TUP13 - Grupo 2
+
+## PROYECTO - Pedidos de un restaurante
+
+Integrantes:
+
+FILARDO Hilda Aldana - filardohilda
+
+GOMEZ Santiago - 36715 - Santiago-Gomez14
+
+HARGUINDEGUY Camila - 36721 - camilaharguindeguy
+
+OLIVA Nicolas - 36594 - Nicolasoliva2025
+
+### TUP13 - Grupo 3
+
+Proyecto: Escuela de idiomas
+
+Integrantes:
+
+AMANDOLA Santiago - 36830 - SanMar-089
+
+PASSARO Leandro Hugo - 36596 - lhpassaro-UTN
+
+RODRIGUEZ Ariel Jacobo - 36606 - ArJacRod
+
+GALANT Luca - 37208 - LG-personal-account
+
+### TUP13 - Grupo 4
+
+Integrantes:
+
+TISERA Camila - 36614 - CamilaTisera
+
+HERRERA Catalina - 36722 - herreracatalina
+
+LOREA Manuel - 36726 - dibulorea
+
+TOVIO Joaquin - 36615 - joacodust7
+
+### TUP13 - Grupo 5
+
+Proyecto: Veterinaria 
+
+Integrantes:
+
+CASTRO Sanchez Liliana - 37099 - sanchezlylyana
+
+GRONDA Anabella - 36718 - AnaGronda
+
+MONLEZUN Neilen - 36734 - NeilenC
+
+ZOPPOLI Luciano - 37105 - luchozoppo
+
+### TUP13 - Grupo 6
+
+Proyecto: Hostel
+
+Integrantes:
+
+PANIN SUAREZ Julian - 36595 - julipaninsuarez-sys
+
+NADOR Kevin - 36584 - kevinnador
+
+FERIOLI Lucio - 36708 - ferioli02
+
+### TUP13 - Grupo 7
+
+Integrantes:
+
+MONTANARI Blas -  - blassmm
+
+BALSA Valentina -  - valenbalsa
+
+VEIGA Tobias - 36618 - TobiasVeiga00
+
+MASSA Laureano - 37101 - Laureano-GitHub
+
+### TUP13 - Grupo 8
+
+Proyecto: Taller Mecanico
+
+Integrantes:
+
+MARTINEZ Maximiliano Nahuel - 36732 - mnahuelmartinez
+
+ESQUIVEL David - 36707 - Davidesquivel-BSSO
+
+LENCINA Mauro Elìas - 37100 - maurolencina
+
+### TUP13 - Grupo 9
+
+Proyecto: Stock de farmacia
+
+Integrantes:
+
+BRIME Milagros - 36843 - MiliBrime
+
+CARRIZO Julia Mailen - 36854 - PochiCarrizo
+
+Ceccacci Jenaro - 36856 - Jenaro9
+
+VELOSO Brian - 36619 - braianveloso-byte
+
+### TUP13 - Grupo 10
+
+Proyecto: Consorcio
+
+Integrantes:
+
+VERASAY Mathias - 36620 - mathias1415
+
+REGGIANI Julian - 36599 - JuliRgg

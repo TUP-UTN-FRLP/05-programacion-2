@@ -1,0 +1,480 @@
+=====================================================================
+ MIGRACION DEL PROYECTO "BANCO" DE SQLITE A MYSQL
+ Ubicacion: Desktop/proyectos/banco
+=====================================================================
+
+Convenciones de esta guia:
+  - Los comandos de terminal estan pensados para Windows (PowerShell).
+    Donde cambia en Linux/Mac, lo aclaro.
+  - Nombres de ejemplo: base "banco", archivo "banco.db", usuario
+    "banco_user", tablas "clientes", "cuentas", "movimientos".
+    Cambialos por los tuyos.
+  - Todo lo que dice <ALGO> es un dato que tenes que completar vos.
+
+
+---------------------------------------------------------------------
+PASO 0. BACKUP (no te lo saltees)
+---------------------------------------------------------------------
+
+0.1  Copia de seguridad de la carpeta completa:
+
+     cd $env:USERPROFILE\Desktop\proyectos
+     Copy-Item -Recurse banco banco_backup_sqlite
+
+     (Linux/Mac:  cp -r banco banco_backup_sqlite )
+
+0.2  Si usas Git, crea una rama para la migracion:
+
+     cd banco
+     git status
+     git add .
+     git commit -m "Estado previo a migracion a MySQL"
+     git checkout -b migracion-mysql
+
+
+---------------------------------------------------------------------
+PASO 1. INSTALAR MYSQL
+---------------------------------------------------------------------
+
+Opcion A (recomendada en Windows): MySQL Installer
+  1. Descargar "MySQL Installer" desde https://dev.mysql.com/downloads/installer/
+  2. Elegir "Server only" (o "Developer Default" si queres Workbench).
+  3. Anotar la clave del usuario root que definas.
+  4. Dejar el puerto 3306 y que arranque como servicio de Windows.
+
+Opcion B: Docker (si ya lo tenes)
+
+     docker run --name mysql-banco -e MYSQL_ROOT_PASSWORD=<CLAVE_ROOT> `
+       -e MYSQL_DATABASE=banco -p 3306:3306 -d mysql:8
+
+Opcion C: XAMPP (trae MySQL/MariaDB + phpMyAdmin).
+
+Verificar que funciona:
+
+     mysql --version
+     mysql -u root -p
+
+(Si "mysql" no se reconoce, agrega la carpeta bin de MySQL al PATH, por
+ejemplo C:\Program Files\MySQL\MySQL Server 8.0\bin )
+
+
+---------------------------------------------------------------------
+PASO 2. CREAR LA BASE Y UN USUARIO PARA EL PROYECTO
+---------------------------------------------------------------------
+
+Dentro de la consola de MySQL (mysql -u root -p):
+
+     CREATE DATABASE banco
+       CHARACTER SET utf8mb4
+       COLLATE utf8mb4_unicode_ci;
+
+     CREATE USER 'banco_user'@'localhost' IDENTIFIED BY '<CLAVE_NUEVA>';
+     GRANT ALL PRIVILEGES ON banco.* TO 'banco_user'@'localhost';
+     FLUSH PRIVILEGES;
+     EXIT;
+
+Probar el usuario nuevo:
+
+     mysql -u banco_user -p banco
+
+Esto evita que el proyecto use "root", que es mala practica.
+
+
+---------------------------------------------------------------------
+PASO 3. RELEVAR EL ESQUEMA ACTUAL DE SQLITE
+---------------------------------------------------------------------
+
+Con el cliente sqlite3 (si no lo tenes, usa Python, abajo):
+
+     cd $env:USERPROFILE\Desktop\proyectos\banco
+     sqlite3 banco.db ".tables"
+     sqlite3 banco.db ".schema"
+
+Para guardar el esquema y los datos en archivos:
+
+     sqlite3 banco.db ".schema" > schema_sqlite.sql
+     sqlite3 banco.db ".dump"   > dump_sqlite.sql
+
+Alternativa sin el cliente sqlite3, desde Python:
+
+     python -c "import sqlite3; c=sqlite3.connect('banco.db'); [print(r[0]) for r in c.execute(\"SELECT sql FROM sqlite_master WHERE sql IS NOT NULL\")]"
+
+Anota para cada tabla: columnas, tipos, claves primarias, claves
+foraneas, restricciones (UNIQUE, NOT NULL, CHECK) y defaults.
+
+NO uses dump_sqlite.sql directamente en MySQL: la sintaxis es distinta
+y va a fallar. Se usa solo de referencia.
+
+
+---------------------------------------------------------------------
+PASO 4. TRADUCIR EL ESQUEMA A MYSQL
+---------------------------------------------------------------------
+
+Tabla de equivalencias:
+
+  SQLite                              MySQL
+  ----------------------------------  ---------------------------------
+  INTEGER PRIMARY KEY AUTOINCREMENT   INT AUTO_INCREMENT PRIMARY KEY
+  INTEGER                             INT (o BIGINT)
+  TEXT (nombres, mails, etc.)         VARCHAR(100) / VARCHAR(255)
+  TEXT (textos largos)                TEXT
+  REAL (montos, saldos)               DECIMAL(15,2)   <-- importante
+  REAL (otros decimales)              DOUBLE
+  BOOLEAN / INTEGER 0-1               TINYINT(1)  (o BOOLEAN)
+  TEXT con fecha                      DATE / DATETIME
+  BLOB                                BLOB
+  "comillas dobles" en nombres        `backticks`
+  PRAGMA foreign_keys = ON            no hace falta (InnoDB las aplica)
+
+Ojo con el dinero: en un proyecto de banco usa DECIMAL, nunca
+FLOAT/DOUBLE, para evitar errores de redondeo.
+
+Ejemplo de schema_mysql.sql (adaptalo a tus tablas):
+
+     CREATE TABLE clientes (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       nombre VARCHAR(100) NOT NULL,
+       apellido VARCHAR(100) NOT NULL,
+       dni VARCHAR(15) NOT NULL UNIQUE,
+       email VARCHAR(150)
+     ) ENGINE=InnoDB;
+
+     CREATE TABLE cuentas (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       cliente_id INT NOT NULL,
+       numero VARCHAR(30) NOT NULL UNIQUE,
+       saldo DECIMAL(15,2) NOT NULL DEFAULT 0,
+       FOREIGN KEY (cliente_id) REFERENCES clientes(id)
+     ) ENGINE=InnoDB;
+
+     CREATE TABLE movimientos (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       cuenta_id INT NOT NULL,
+       tipo VARCHAR(20) NOT NULL,
+       monto DECIMAL(15,2) NOT NULL,
+       fecha DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+       FOREIGN KEY (cuenta_id) REFERENCES cuentas(id)
+     ) ENGINE=InnoDB;
+
+Notas:
+  - Cada VARCHAR necesita largo. Elegi uno razonable.
+  - SQLite no valida tipos de forma estricta, MySQL si. Si hay datos
+    "raros" en SQLite (texto en una columna numerica, fechas mal
+    formadas), la migracion va a fallar y hay que limpiarlos antes.
+  - Crea las tablas en orden: primero las que no dependen de otras.
+
+Cargar el esquema en MySQL:
+
+     mysql -u banco_user -p banco < schema_mysql.sql
+
+Verificar:
+
+     mysql -u banco_user -p banco -e "SHOW TABLES; DESCRIBE cuentas;"
+
+
+---------------------------------------------------------------------
+PASO 5. MIGRAR LOS DATOS
+---------------------------------------------------------------------
+
+5.1  Instalar el conector de MySQL para Python:
+
+     pip install mysql-connector-python
+
+     (alternativa: pip install pymysql)
+
+5.2  Crear el archivo migrar_datos.py en la carpeta del proyecto:
+
+---- inicio de migrar_datos.py ----
+import sqlite3
+import mysql.connector
+
+SQLITE_PATH = "banco.db"
+
+MYSQL_CFG = {
+    "host": "localhost",
+    "port": 3306,
+    "user": "banco_user",
+    "password": "<CLAVE_NUEVA>",
+    "database": "banco",
+}
+
+# Orden: primero las tablas "padre", despues las que dependen de ellas
+TABLAS = ["clientes", "cuentas", "movimientos"]
+
+origen = sqlite3.connect(SQLITE_PATH)
+origen.row_factory = sqlite3.Row
+
+destino = mysql.connector.connect(**MYSQL_CFG)
+cur = destino.cursor()
+
+try:
+    cur.execute("SET FOREIGN_KEY_CHECKS = 0")
+
+    for tabla in TABLAS:
+        filas = origen.execute(f"SELECT * FROM {tabla}").fetchall()
+        if not filas:
+            print(f"{tabla}: vacia, se omite")
+            continue
+
+        columnas = filas[0].keys()
+        lista_cols = ", ".join(f"`{c}`" for c in columnas)
+        marcadores = ", ".join(["%s"] * len(columnas))
+        sql = f"INSERT INTO `{tabla}` ({lista_cols}) VALUES ({marcadores})"
+
+        cur.executemany(sql, [tuple(f) for f in filas])
+        print(f"{tabla}: {len(filas)} filas migradas")
+
+    cur.execute("SET FOREIGN_KEY_CHECKS = 1")
+    destino.commit()
+    print("Migracion terminada OK")
+
+except Exception as e:
+    destino.rollback()
+    print("ERROR, se hizo rollback:", e)
+    raise
+
+finally:
+    cur.close()
+    destino.close()
+    origen.close()
+---- fin de migrar_datos.py ----
+
+5.3  Ejecutarlo UNA sola vez, con las tablas de MySQL vacias:
+
+     python migrar_datos.py
+
+Si falla a la mitad, el rollback deja MySQL como estaba. Corregi el
+problema y volve a correrlo. Si ya habia filas cargadas, vacia las
+tablas antes de repetir:
+
+     mysql -u banco_user -p banco -e "SET FOREIGN_KEY_CHECKS=0; TRUNCATE movimientos; TRUNCATE cuentas; TRUNCATE clientes; SET FOREIGN_KEY_CHECKS=1;"
+
+Detalle: como se insertan los ids originales, MySQL ajusta solo el
+contador AUTO_INCREMENT para seguir desde el maximo.
+
+Alternativa por CSV (para tablas grandes):
+
+     sqlite3 -header -csv banco.db "SELECT * FROM clientes;" > clientes.csv
+
+     -- en MySQL:
+     LOAD DATA LOCAL INFILE 'C:/ruta/clientes.csv'
+     INTO TABLE clientes
+     FIELDS TERMINATED BY ',' ENCLOSED BY '"'
+     LINES TERMINATED BY '\n'
+     IGNORE 1 ROWS;
+
+     (puede requerir SET GLOBAL local_infile = 1; )
+
+
+---------------------------------------------------------------------
+PASO 6. VERIFICAR LA MIGRACION
+---------------------------------------------------------------------
+
+6.1  Comparar cantidad de filas por tabla.
+
+En SQLite:
+     sqlite3 banco.db "SELECT COUNT(*) FROM clientes;"
+     sqlite3 banco.db "SELECT COUNT(*) FROM cuentas;"
+     sqlite3 banco.db "SELECT COUNT(*) FROM movimientos;"
+
+En MySQL:
+     mysql -u banco_user -p banco -e "SELECT COUNT(*) FROM clientes; SELECT COUNT(*) FROM cuentas; SELECT COUNT(*) FROM movimientos;"
+
+6.2  Comparar totales de control (muy util en un banco):
+
+     SELECT SUM(saldo) FROM cuentas;
+     SELECT SUM(monto) FROM movimientos;
+
+Tienen que dar lo mismo en los dos motores.
+
+6.3  Revisar integridad de claves foraneas (en MySQL, no deben salir filas):
+
+     SELECT c.id FROM cuentas c
+     LEFT JOIN clientes cl ON cl.id = c.cliente_id
+     WHERE cl.id IS NULL;
+
+6.4  Mirar a ojo unas filas de cada tabla (fechas, tildes, montos).
+
+
+---------------------------------------------------------------------
+PASO 7. ADAPTAR EL CODIGO DEL PROYECTO
+---------------------------------------------------------------------
+
+7.1  Instalar dependencias y registrarlas:
+
+     pip install mysql-connector-python
+     pip freeze > requirements.txt
+
+7.2  Sacar las credenciales del codigo. Opcion simple con variables de
+     entorno (PowerShell):
+
+     $env:DB_HOST="localhost"
+     $env:DB_USER="banco_user"
+     $env:DB_PASSWORD="<CLAVE_NUEVA>"
+     $env:DB_NAME="banco"
+
+     o un archivo .env con python-dotenv (pip install python-dotenv).
+     En ese caso agrega ".env" al .gitignore para no subir la clave.
+
+7.3  Centralizar la conexion en un solo modulo, por ejemplo db.py:
+
+---- inicio de db.py ----
+import os
+import mysql.connector
+
+def obtener_conexion():
+    return mysql.connector.connect(
+        host=os.getenv("DB_HOST", "localhost"),
+        port=int(os.getenv("DB_PORT", "3306")),
+        user=os.getenv("DB_USER", "banco_user"),
+        password=os.getenv("DB_PASSWORD", ""),
+        database=os.getenv("DB_NAME", "banco"),
+    )
+---- fin de db.py ----
+
+7.4  Cambios tipicos en las consultas (buscalos con Ctrl+Shift+F en tu
+     editor):
+
+  a) Import:
+       import sqlite3                    ->  import mysql.connector
+  b) Conexion:
+       sqlite3.connect("banco.db")       ->  obtener_conexion()
+  c) Placeholders (el cambio mas importante):
+       "... WHERE id = ?"                ->  "... WHERE id = %s"
+  d) Filas como diccionario:
+       conn.row_factory = sqlite3.Row    ->  conn.cursor(dictionary=True)
+  e) Ejecutar directo desde la conexion:
+       conn.execute(...)                 ->  cur = conn.cursor(); cur.execute(...)
+     (en mysql-connector, execute es del cursor, no de la conexion)
+  f) Excepciones:
+       sqlite3.IntegrityError            ->  mysql.connector.IntegrityError
+       sqlite3.Error                     ->  mysql.connector.Error
+  g) Insert con upsert:
+       INSERT OR REPLACE INTO ...        ->  REPLACE INTO ...  o
+                                             INSERT ... ON DUPLICATE KEY UPDATE ...
+       INSERT OR IGNORE INTO ...         ->  INSERT IGNORE INTO ...
+  h) Funciones de fecha:
+       datetime('now')                   ->  NOW()
+       date('now')                       ->  CURDATE()
+  i) Ultimo id insertado:
+       cursor.lastrowid                  ->  sigue funcionando igual
+  j) Transacciones:
+       en SQLite ya se autoabre una transaccion; en MySQL el conector
+       trabaja con autocommit apagado por defecto, asi que segui
+       usando conn.commit() y conn.rollback() como antes.
+  k) Cerrar cursor y conexion en finally, o usar "with".
+
+Ejemplo antes / despues:
+
+  # ANTES (SQLite)
+  conn = sqlite3.connect("banco.db")
+  conn.row_factory = sqlite3.Row
+  fila = conn.execute("SELECT * FROM cuentas WHERE numero = ?", (num,)).fetchone()
+
+  # DESPUES (MySQL)
+  conn = obtener_conexion()
+  cur = conn.cursor(dictionary=True)
+  cur.execute("SELECT * FROM cuentas WHERE numero = %s", (num,))
+  fila = cur.fetchone()
+  cur.close()
+
+7.5  Dinero en Python: con DECIMAL, MySQL devuelve objetos Decimal.
+     Usalos tal cual, no los mezcles con float:
+
+     from decimal import Decimal
+     nuevo_saldo = fila["saldo"] + Decimal("100.50")
+
+7.6  Si el proyecto usa un ORM (SQLAlchemy), el cambio es mucho mas
+     corto. Solo cambia la URL de conexion:
+
+     pip install sqlalchemy pymysql
+
+     # antes
+     engine = create_engine("sqlite:///banco.db")
+     # despues
+     engine = create_engine("mysql+pymysql://banco_user:<CLAVE_NUEVA>@localhost:3306/banco?charset=utf8mb4")
+
+     Revisa los modelos: String sin largo -> String(100), Float en
+     montos -> Numeric(15, 2).
+
+
+---------------------------------------------------------------------
+PASO 8. PROBAR EL PROYECTO
+---------------------------------------------------------------------
+
+8.1  Correr la aplicacion y probar cada funcionalidad: alta de cliente,
+     alta de cuenta, deposito, extraccion, transferencia, consulta de
+     saldo, listado de movimientos, baja.
+
+8.2  Si tenes tests:
+
+     python -m pytest
+     (o python -m unittest)
+
+8.3  Probar casos de error: DNI duplicado, saldo insuficiente, cuenta
+     inexistente. En MySQL los errores de integridad pueden tener
+     otra excepcion/mensaje que en SQLite.
+
+8.4  Probar una transferencia que falle a la mitad y confirmar que
+     se hace rollback (los saldos no deben quedar a medias).
+
+
+---------------------------------------------------------------------
+PASO 9. CIERRE Y LIMPIEZA
+---------------------------------------------------------------------
+
+9.1  No borres banco.db todavia. Dejalo como respaldo unos dias.
+
+9.2  Actualiza el README: requisitos (MySQL 8, Python, paquetes),
+     como crear la base, como cargar schema_mysql.sql y como
+     configurar las variables de entorno.
+
+9.3  Guardar en el repo: schema_mysql.sql, db.py, requirements.txt.
+     NO subir: .env, claves, banco.db ni dumps con datos reales.
+
+9.4  Commit y push:
+
+     git add .
+     git commit -m "Migracion de SQLite a MySQL"
+     git push -u origin migracion-mysql
+
+9.5  Mergear a main cuando todo este probado.
+
+
+---------------------------------------------------------------------
+PROBLEMAS COMUNES
+---------------------------------------------------------------------
+
+- "Access denied for user"
+    Usuario o clave mal, o falto el GRANT. Rehacer el PASO 2.
+
+- "Can't connect to MySQL server on 'localhost'"
+    El servicio no esta corriendo. En Windows: services.msc y
+    arrancar "MySQL80". Con Docker: docker start mysql-banco.
+
+- "Cannot add or update a child row: a foreign key constraint fails"
+    Se migro una tabla hija antes que la padre o hay datos huerfanos
+    en SQLite. Revisar el orden de TABLAS en migrar_datos.py.
+
+- "Incorrect datetime value" / "Incorrect decimal value"
+    Hay datos con formato invalido en SQLite. Limpiarlos antes de
+    migrar (por ejemplo, fechas con zona horaria o texto en montos).
+
+- "Data too long for column"
+    El VARCHAR quedo corto. Agrandarlo con ALTER TABLE ... MODIFY.
+
+- Tildes y enies se ven mal
+    Confirmar utf8mb4 en la base y agregar charset="utf8mb4" en la
+    conexion.
+
+- "Unread result found"
+    Cerrar el cursor o consumir todos los resultados (fetchall) antes
+    de ejecutar otra consulta.
+
+- Error de autenticacion "caching_sha2_password"
+    Actualizar mysql-connector-python (pip install -U
+    mysql-connector-python).
+
+=====================================================================
+FIN DE LA GUIA
+=====================================================================
