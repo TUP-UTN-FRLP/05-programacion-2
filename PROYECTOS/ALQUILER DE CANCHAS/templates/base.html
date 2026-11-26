@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=Inter:wght@400;500&display=swap">
     <title>{% block titulo %}Alquiler de Canchas{% endblock %}</title>
 
-    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}?v=2">
 </head>
 <body>
 
@@ -21,7 +21,7 @@
             <a href="{% url 'inicio' %}">Inicio</a>
             <a href="#">Canchas</a>
             <a href="#">Reservas</a>
-            <a href="#">Clientes</a>
+            <a href="{% url 'usuarios:lista' %}">Usuarios</a>
             <a href="/admin/">Administración</a>
         </nav>
     </header>
@@ -33,6 +33,8 @@
     <footer>
         <p>Proyecto final &mdash; Programación II &mdash; TUP UTN FRLP</p>
     </footer>
+
+    {% block scripts %}{% endblock %}
 
 </body>
 </html>
