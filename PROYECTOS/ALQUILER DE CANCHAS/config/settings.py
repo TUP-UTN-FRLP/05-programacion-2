@@ -110,6 +110,10 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+# El modelo de usuarios propio debe declararse antes de ejecutar migraciones.
+AUTH_USER_MODEL = 'usuarios.Usuario'
+
+
 # Internationalization
 LANGUAGE_CODE = 'es-ar'
 

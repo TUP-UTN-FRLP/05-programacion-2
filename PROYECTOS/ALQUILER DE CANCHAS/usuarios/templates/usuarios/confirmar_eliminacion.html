@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Eliminar usuario | Alquiler de Canchas{% endblock %}
+
+{% block contenido %}
+<h1>Eliminar usuario</h1>
+<section>
+    <p>¿Querés eliminar a <strong>{{ usuario.nombre }} {{ usuario.apellido }}</strong> ({{ usuario.email }})?</p>
+    <p class="advertencia">Esta acción no se puede deshacer.</p>
+    <form method="post" class="formulario-acciones">
+        {% csrf_token %}
+        <button class="boton boton-peligro" type="submit">Sí, eliminar</button>
+        <a href="{% url 'usuarios:lista' %}">Cancelar</a>
+    </form>
+</section>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block titulo %}{{ titulo }} | Alquiler de Canchas{% endblock %}
+
+{% block contenido %}
+<div class="pagina-cabecera">
+    <div>
+        <h1>{{ titulo }}</h1>
+        <p>Completá los datos del usuario.</p>
+    </div>
+    <a class="enlace-volver" href="{% url 'usuarios:lista' %}">← Volver a usuarios</a>
+</div>
+
+<section>
+    <form method="post" class="formulario">
+        {% csrf_token %}
+        {% if formulario.non_field_errors %}{{ formulario.non_field_errors }}{% endif %}
+        {% for campo in formulario %}
+            <div class="campo">
+                {{ campo.label_tag }}
+                {{ campo }}
+                {% for error in campo.errors %}<p class="error">{{ error }}</p>{% endfor %}
+            </div>
+        {% endfor %}
+        <div class="formulario-acciones">
+        <button id="boton-guardar" class="boton" type="submit" disabled>{{ boton }}</button>
+            <a href="{% url 'usuarios:lista' %}">Cancelar</a>
+        </div>
+    </form>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const formulario = document.querySelector('.formulario');
+    const botonGuardar = document.querySelector('#boton-guardar');
+
+    function actualizarBotonGuardar() {
+        botonGuardar.disabled = !formulario.checkValidity();
+    }
+
+    formulario.addEventListener('input', actualizarBotonGuardar);
+    formulario.addEventListener('change', actualizarBotonGuardar);
+
+    const campoFechaNacimiento = document.querySelector('#id_fecha_nacimiento');
+    campoFechaNacimiento.addEventListener('input', function () {
+        const numeros = this.value.replace(/\D/g, '').slice(0, 8);
+        let fecha = numeros.slice(0, 2);
+
+        if (numeros.length > 2) {
+            fecha += '/' + numeros.slice(2, 4);
+        }
+        if (numeros.length > 4) {
+            fecha += '/' + numeros.slice(4, 8);
+        }
+
+        this.value = fecha;
+        actualizarBotonGuardar();
+    });
+    actualizarBotonGuardar();
+</script>
+{% endblock %}

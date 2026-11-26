@@ -118,6 +118,63 @@ section li {
     margin-bottom: 0.4rem;
 }
 
+/* ---------- Usuarios ---------- */
+
+.pagina-cabecera {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.pagina-cabecera p { margin: 0; color: var(--gris); }
+.boton {
+    display: inline-block;
+    padding: 0.55rem 0.9rem;
+    border: 0;
+    border-radius: 6px;
+    background: var(--verde);
+    color: var(--blanco);
+    font: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+.boton:hover { background: var(--verde-oscuro); }
+.boton:disabled { background: #9aa7a2; cursor: not-allowed; }
+.boton.secundario { background: var(--verde-oscuro); }
+.boton-peligro { background: #b42318; }
+.formulario-acciones { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+.formulario input:not([type="checkbox"]),
+.formulario select {
+    width: 100%;
+    min-height: 2.65rem;
+    padding: 0.55rem 0.65rem;
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+    background-color: var(--blanco);
+    font: inherit;
+}
+.formulario input[type="checkbox"] { align-self: flex-start; }
+.tabla-contenedor { overflow-x: auto; margin-top: 1.25rem; }
+table { width: 100%; border-collapse: collapse; white-space: nowrap; }
+th, td { padding: 0.7rem; border-bottom: 1px solid var(--borde); text-align: left; }
+th { color: var(--verde-oscuro); font-size: 0.9rem; }
+.acciones { display: flex; gap: 0.7rem; }
+.peligro, .error, .advertencia { color: #b42318; }
+.estado { display: inline-block; padding: 0.12rem 0.5rem; border-radius: 99px; font-size: 0.82rem; }
+.activo { background: var(--verde-claro); color: var(--verde-oscuro); }
+.inactivo { background: #f1f3f2; color: var(--gris); }
+.estado-vacio { color: var(--gris); }
+.mensaje { padding: 0.75rem 1rem; border-radius: 6px; background: var(--verde-claro); color: var(--verde-oscuro); }
+.formulario { max-width: 620px; }
+.campo { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 1rem; }
+.campo label { font-weight: 600; }
+.campo-checkbox { flex-direction: row; align-items: center; }
+.campo-checkbox input { width: auto; }
+.error { margin: 0; font-size: 0.88rem; }
+.enlace-volver { text-decoration: none; }
+
 /* ---------- Pie de página ---------- */
 
 footer {
