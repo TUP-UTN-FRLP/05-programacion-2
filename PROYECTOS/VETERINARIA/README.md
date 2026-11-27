@@ -12,7 +12,7 @@ MONLEZUN Neilen - 36734 - NeilenC
 ZOPPOLI Luciano - 37105 - luchozoppo
 
 
-Sistema de gestión para una veterinaria (clientes, mascotas y citas), hecho con Django.
+Sistema de gestión para una veterinaria (duenio, mascota y consulta), hecho con Django.
 
 ## Requisitos
 
@@ -42,7 +42,7 @@ Sistema de gestión para una veterinaria (clientes, mascotas y citas), hecho con
 3. Instalar Django:
 
    ```powershell
-   pip install "django==6.1.3"
+   pip install "django==6.1.2"
    ```
 
 4. Crear la base de datos (SQLite, no requiere instalar nada más):
@@ -70,9 +70,9 @@ Sistema de gestión para una veterinaria (clientes, mascotas y citas), hecho con
 | Carpeta     | Contenido |
 |-------------|-----------|
 | `config/`   | Configuración del proyecto (settings, urls) |
-| `clientes/` | App de clientes |
-| `mascotas/` | App de mascotas |
-| `citas/`    | App de citas |
+| `duenio/`   | App de Duenios   |
+| `mascota/`  | App de mascotas  |
+| `consulta/` | App de consultas |
 
 ## Problemas comunes
 
